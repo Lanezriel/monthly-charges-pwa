@@ -1,7 +1,7 @@
 {
     "name": "Monthly charges",
     "short_name": "monthly-charges",
-    "start_url": "/",
+    "start_url": "/monthly-charges-pwa",
     "display": "standalone",
     "theme_color": "#ffffff",
     "background_color": "#000000",
