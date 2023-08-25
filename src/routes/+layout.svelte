@@ -1,7 +1,12 @@
 <script>
   import { pwaInfo } from 'virtual:pwa-info';
+  import { dev } from '$app/environment';
 	import Header from './Header.svelte';
 	import './styles.css';
+
+  if (!dev) {
+    pwaInfo.webManifest.linkTag = '<link rel="manifest" href="/monthly-charges-pwa/manifest.webmanifest">'
+  }
 
   $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : '';
 </script>
