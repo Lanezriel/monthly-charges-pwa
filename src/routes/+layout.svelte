@@ -1,7 +1,14 @@
 <script>
+  import { pwaInfo } from 'virtual:pwa-info';
 	import Header from './Header.svelte';
 	import './styles.css';
+
+  $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : '';
 </script>
+
+<svelte:head>
+  {@html webManifestLink}
+</svelte:head>
 
 <div class="app">
 	<Header />
