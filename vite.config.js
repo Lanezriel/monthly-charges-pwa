@@ -11,8 +11,10 @@ export default defineConfig(({ mode }) => ({
         type: 'module',
       },
       manifest: {
+        "id": "monthly-charges-pwa",
         "name": "Monthly charges",
         "short_name": "monthly-charges",
+        "scope": mode === "development" ? "/" : "/montly-charges-pwa",
         "start_url": mode === "development" ? "/" : "/monthly-charges-pwa",
         "display": "standalone",
         "theme_color": "#ffffff",

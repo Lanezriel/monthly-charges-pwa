@@ -1,6 +1,7 @@
 /// <reference lib="webworker" />
 
 import { build, files, version } from '$service-worker';
+import { dev } from '$app/environment';
 
 const worker = self;
 const FILES = `cache${version}`;
@@ -14,7 +15,7 @@ worker.addEventListener('install', (event) => {
     event.waitUntil(
         caches
             .open(FILES)
-            .then((cache) => cache.addAll(to_cache))
+            .then((cache) => cache.addAll(to_cache.map((item) => dev ? item : `/monthly-charges-pwa${item}`)))
             .then(() => {
                 worker.skipWaiting();
             })
