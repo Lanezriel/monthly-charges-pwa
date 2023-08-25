@@ -1,0 +1,1 @@
+{"name":"Monthly charges","short_name":"monthly-charges","start_url":"/monthly-charges-pwa","display":"standalone","background_color":"#000000","lang":"en","scope":"./","theme_color":"#ffffff","icons":[{"sizes":"192x192","src":"icon192.png","type":"image/png"},{"sizes":"512x512","src":"icon512.png","type":"image/png"}]}
