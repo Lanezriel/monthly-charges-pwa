@@ -1,12 +1,15 @@
 <script>
 	import { page } from '$app/stores';
+  import { base } from '$app/paths';
 	import logo from '$lib/images/svelte-logo.svg';
 	import github from '$lib/images/github.svg';
+
+  $: basePath = base === '' ? '/' : base;
 </script>
 
 <header>
 	<div class="corner">
-		<a href="https://kit.svelte.dev">
+		<a href="https://kit.svelte.dev" target="_blank">
 			<img src={logo} alt="SvelteKit" />
 		</a>
 	</div>
@@ -16,8 +19,11 @@
 			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
 		</svg>
 		<ul>
-			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Home</a>
+			<li aria-current={$page.url.pathname === basePath ? 'page' : undefined}>
+				<a href="{basePath}">Home</a>
+			</li>
+      <li aria-current={$page.url.pathname === `${base}/test` ? 'page' : undefined}>
+				<a href="{base}/test">Test</a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">
@@ -26,7 +32,7 @@
 	</nav>
 
 	<div class="corner">
-		<a href="https://github.com/Lanezriel">
+		<a href="https://github.com/Lanezriel" target="_blank">
 			<img src={github} alt="GitHub" />
 		</a>
 	</div>

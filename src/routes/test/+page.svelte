@@ -1,14 +1,9 @@
 <script>
 </script>
 
-<svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
-</svelte:head>
-
 <section>
-	<h1>Welcome!</h1>
-  <p>This page is soon to be completely changed</p>
+  <h1>Test</h1>
+  <p>I'm only here to test navbar and service worker</p>
 </section>
 
 <style>
