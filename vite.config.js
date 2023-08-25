@@ -10,7 +10,6 @@ export default defineConfig(({ mode }) => ({
         enabled: true,
         type: 'module',
       },
-      strategies: 'injectManifest',
       manifest: {
         "name": "Monthly charges",
         "short_name": "monthly-charges",
