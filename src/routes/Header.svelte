@@ -4,7 +4,7 @@
 	import logo from '$lib/images/svelte-logo.svg';
 	import github from '$lib/images/github.svg';
 
-  $: basePath = base === '' ? '/' : base;
+  $: basePath = base === '' ? '/' : `${base}/`;
 </script>
 
 <header>
@@ -22,8 +22,8 @@
 			<li aria-current={$page.url.pathname === basePath ? 'page' : undefined}>
 				<a href="{basePath}">Home</a>
 			</li>
-      <li aria-current={$page.url.pathname === `${base}/test` ? 'page' : undefined}>
-				<a href="{base}/test">Test</a>
+      <li aria-current={$page.url.pathname === `${base}/test/` ? 'page' : undefined}>
+				<a href="{base}/test/">Test</a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">
