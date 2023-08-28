@@ -1,7 +1,7 @@
 const a = /* @__PURE__ */ location.pathname.split("/").slice(0, -1).join("/"), i = [
-  a + "/_app/immutable/entry/app.129c04aa.js",
+  a + "/_app/immutable/entry/app.58be203c.js",
   a + "/_app/immutable/assets/0.cd0b29c6.css",
-  a + "/_app/immutable/nodes/0.920b4c01.js",
+  a + "/_app/immutable/nodes/0.7c6613cd.js",
   a + "/_app/immutable/assets/svelte-logo.87df40b8.svg",
   a + "/_app/immutable/assets/github.1ea8d62e.svg",
   a + "/_app/immutable/assets/fira-mono-cyrillic-ext-400-normal.3df7909e.woff2",
@@ -11,22 +11,22 @@ const a = /* @__PURE__ */ location.pathname.split("/").slice(0, -1).join("/"), i
   a + "/_app/immutable/assets/fira-mono-greek-400-normal.a8be01ce.woff2",
   a + "/_app/immutable/assets/fira-mono-latin-ext-400-normal.6bfabd30.woff2",
   a + "/_app/immutable/assets/fira-mono-latin-400-normal.e43b3538.woff2",
-  a + "/_app/immutable/nodes/1.7d796c8f.js",
+  a + "/_app/immutable/nodes/1.4df46f6a.js",
   a + "/_app/immutable/assets/2.5d969213.css",
   a + "/_app/immutable/nodes/2.ef4891fe.js",
   a + "/_app/immutable/nodes/3.fe160bd4.js",
   a + "/_app/immutable/chunks/index.afc7ab19.js",
   a + "/_app/immutable/chunks/scheduler.b0c1c2c3.js",
-  a + "/_app/immutable/chunks/singletons.83171c15.js",
-  a + "/_app/immutable/chunks/stores.6efc5c77.js",
-  a + "/_app/immutable/entry/start.e6e24796.js"
+  a + "/_app/immutable/chunks/singletons.f690e294.js",
+  a + "/_app/immutable/chunks/stores.9781e7a2.js",
+  a + "/_app/immutable/entry/start.49a0a70d.js"
 ], m = [
   a + "/.nojekyll",
   a + "/favicon.png",
   a + "/icon192.png",
   a + "/icon512.png",
   a + "/robots.txt"
-], l = "1693245685148", n = self, p = "monthly-charges", c = `${p}_${l}`, r = i.concat(m);
+], l = "1693246268835", n = self, p = "monthly-charges", c = `${p}_${l}`, r = i.concat(m);
 n.addEventListener("install", (e) => {
   e.waitUntil(
     caches.open(c).then((s) => s.addAll(r)).then(() => {
