@@ -9,15 +9,12 @@ const FILES = `cache${version}`;
 // `files` is an array of everything in the `static` directory
 const to_cache = build.concat(files);
 const staticAssets = new Set(to_cache);
-console.log(to_cache);
 
 worker.addEventListener('install', (event) => {
     event.waitUntil(
         caches
             .open(FILES)
-            .then((cache) => cache.addAll(to_cache.map(
-              (item) => self.location.hostname === 'localhost' ? item : `/monthly-charges-pwa${item}`)
-            ))
+            .then((cache) => cache.addAll(to_cache))
             .then(() => {
                 worker.skipWaiting();
             })
