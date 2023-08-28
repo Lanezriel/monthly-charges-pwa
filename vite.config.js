@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => ({
         "name": "Monthly charges",
         "short_name": "monthly-charges",
         "scope": mode === "development" ? "/" : "/montly-charges-pwa/",
-        "start_url": "/",
+        "start_url": "./",
         "display": "standalone",
         "theme_color": "#ffffff",
         "background_color": "#000000",
