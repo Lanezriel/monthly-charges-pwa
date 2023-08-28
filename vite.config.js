@@ -2,7 +2,7 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { SvelteKitPWA } from '@vite-pwa/sveltekit'
 import { defineConfig } from 'vite';
 
-export default defineConfig(({ mode }) => ({
+export default defineConfig(() => ({
 	plugins: [
     sveltekit(),
     SvelteKitPWA({
@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => ({
         "id": "monthly-charges-pwa",
         "name": "Monthly charges",
         "short_name": "monthly-charges",
-        "scope": mode === "development" ? "/" : "/montly-charges-pwa/",
+        "scope": "./",
         "start_url": "./",
         "display": "standalone",
         "theme_color": "#ffffff",
