@@ -36,35 +36,35 @@ worker.addEventListener('activate', (event) => {
   );
 });
 
-// Trying to only use cached stuff as we're caching everything in the beginning
+
+/**
+ * Fetch the asset from the network and store it in the cache.
+ * Fall back to the cache if the user is offline.
+ */
+async function fetchAndCache(request) {
+  const cache = await caches.open(CACHE_NAME);
+
+  try {
+    const response = await fetch(request);
+    cache.put(request, response.clone());
+    return response;
+  } catch (err) {
+    const response = await cache.match(request);
+    if (response) return response;
+
+    throw err;
+  }
+}
+
 worker.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((cacheResponse) => {
-      return cacheResponse || fetch(event.request);
+      return cacheResponse || fetchAndCache(event.request.clone());
     })
   );
 });
 
 // Backup of FETCH listner
-/**
- * Fetch the asset from the network and store it in the cache.
- * Fall back to the cache if the user is offline.
- */
-// async function fetchAndCache(request) {
-//   const cache = await caches.open(CACHE_NAME);
-
-//   try {
-//     const response = await fetch(request);
-//     cache.put(request, response.clone());
-//     return response;
-//   } catch (err) {
-//     const response = await cache.match(request);
-//     if (response) return response;
-
-//     throw err;
-//   }
-// }
-
 // worker.addEventListener('fetch', (event) => {
 //   if (event.request.method !== 'GET' || event.request.headers.has('range')) return;
 
