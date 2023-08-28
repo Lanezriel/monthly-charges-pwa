@@ -12,8 +12,8 @@ export default defineConfig(() => ({
       },
       manifest: {
         "id": "monthly-charges-pwa",
-        "name": "Monthly charges",
-        "short_name": "monthly-charges",
+        "name": "Monthly Charges PWA",
+        "short_name": "Monthly Charges",
         "scope": "./",
         "start_url": "./",
         "display": "standalone",
