@@ -24,7 +24,6 @@
   $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : '';
 
   async function updateIDB() {
-    console.log($test);
     await set('test', $test);
   }
 </script>
