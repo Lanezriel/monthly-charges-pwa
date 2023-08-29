@@ -26,6 +26,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"idb-keyval": "^6.2.1",
 		"kolorist": "^1.8.0"
 	}
 }

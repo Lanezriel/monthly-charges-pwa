@@ -17,5 +17,6 @@
   h1 {
     font-size: 4rem;
     font-weight: bold;
+    margin: 0;
   }
 </style>
