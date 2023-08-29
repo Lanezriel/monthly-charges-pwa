@@ -1,14 +1,32 @@
 <script>
+  import { setContext } from 'svelte';
+  import { writable } from 'svelte/store';
+  import { set } from 'idb-keyval';
   import { pwaInfo } from 'virtual:pwa-info';
   import { dev } from '$app/environment';
 	import Header from './Header.svelte';
 	import './styles.css';
+
+  // Retrieve data from +layout.js (which retrieved data from indexedDB)
+  /** @type {import('./$types').PageData} */
+  export let data;
+
+  const test = writable(data.test || { isSmall: false, isTeal: false });
+  setContext('test', test);
+
+  // Update indexedDb when store has changes
+  $: $test, updateIDB();
 
   if (!dev) {
     pwaInfo.webManifest.linkTag = '<link rel="manifest" href="/monthly-charges-pwa/manifest.webmanifest">'
   }
 
   $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : '';
+
+  async function updateIDB() {
+    console.log($test);
+    await set('test', $test);
+  }
 </script>
 
 <svelte:head>

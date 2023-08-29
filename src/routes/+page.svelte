@@ -1,36 +1,24 @@
 <script>
-	import { onMount } from "svelte";
-  import { writable } from "svelte/store";
-  import { get, set } from "idb-keyval";
+	import { getContext } from "svelte";
 
-  const isSmallStore = writable(false);
-  let isSmall;
-  isSmallStore.subscribe((val) => {
-    isSmall = val;
-  });
+  const test = getContext('test');
 
-  onMount(() => {
-    get('isSmall').then((value) => {
-      isSmallStore.set(value);
-    });
-  });
+  $: buttonText = $test.isSmall ? 'Restore title size' : 'Make title small';
 
   function toggleIsSmall() {
-    set('isSmall', !isSmall).then(() => {
-      isSmallStore.set(!isSmall);
-    });
+    $test.isSmall = !$test.isSmall;
   }
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>Monthly charges - Home</title>
+	<meta name="description" content="Monthly charges home page" />
 </svelte:head>
 
 <section>
-	<h1 class:small-title={isSmall}>Welcome!</h1>
+	<h1 class:small-title={$test.isSmall}>Welcome!</h1>
   <p>This page is soon to be completely changed</p>
-  <button on:click={toggleIsSmall}>{isSmall ? 'Restore title size' : 'Make title small'}</button>
+  <button on:click={toggleIsSmall}>{buttonText}</button>
 </section>
 
 <style>
