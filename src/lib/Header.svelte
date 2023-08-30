@@ -6,13 +6,7 @@
 	import github from '$lib/svg/github.svelte';
   import DarkModeToggler from '$lib/DarkModeToggler.svelte';
 
-  const preferences = getContext('preferences');
-
   $: basePath = base === '' ? '/' : `${base}/`;
-
-  function toggleDarkMode() {
-    $preferences.isDark = !$preferences.isDark;
-  }
 </script>
 
 <header>
