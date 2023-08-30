@@ -4,27 +4,55 @@
   import { set } from 'idb-keyval';
   import { pwaInfo } from 'virtual:pwa-info';
   import { dev } from '$app/environment';
-	import Header from './Header.svelte';
+	import Header from '$lib/Header.svelte';
 	import './styles.css';
 
   // Retrieve data from +layout.js (which retrieved data from indexedDB)
   /** @type {import('./$types').PageData} */
   export let data;
 
+  // Initiate stores
   const test = writable(data.test || { isSmall: false, isTeal: false });
   setContext('test', test);
-
-  // Update indexedDb when store has changes
-  $: $test, updateIDB();
-
+  
+  const preferences = writable(data.preferences || { isDark: checkPrefersColorScheme() });
+  setContext('preferences', preferences);
+  
+  // Update on system preference change
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
+      $preferences.isDark = event.matches;
+    })
+  }
+  
   if (!dev) {
     pwaInfo.webManifest.linkTag = '<link rel="manifest" href="/monthly-charges-pwa/manifest.webmanifest">'
   }
 
+  // Update indexedDb when store has changes
+  $: $test, updateIDB('test', $test);
+  $: $preferences, updateIDB('preferences', $preferences);
+  $: $preferences.isDark, toggleHTMLDarkMode($preferences.isDark);
+  
+  // Other reactives
   $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : '';
 
-  async function updateIDB() {
-    await set('test', $test);
+  function checkPrefersColorScheme() {
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+
+  function toggleHTMLDarkMode(isDark) {
+    const htmlTag = document.querySelector('html');
+
+    if (isDark) {
+      htmlTag.setAttribute('data-dark-mode', true);
+    } else {
+      htmlTag.removeAttribute('data-dark-mode');
+    }
+  }
+
+  async function updateIDB(key, object) {
+    await set(key, object);
   }
 </script>
 

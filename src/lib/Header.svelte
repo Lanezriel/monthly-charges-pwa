@@ -1,16 +1,24 @@
 <script>
 	import { page } from '$app/stores';
   import { base } from '$app/paths';
-	import logo from '$lib/images/svelte-logo.svg';
-	import github from '$lib/images/github.svg';
+  import { getContext } from 'svelte';
+
+	import github from '$lib/svg/github.svelte';
+  import DarkModeToggler from '$lib/DarkModeToggler.svelte';
+
+  const preferences = getContext('preferences');
 
   $: basePath = base === '' ? '/' : `${base}/`;
+
+  function toggleDarkMode() {
+    $preferences.isDark = !$preferences.isDark;
+  }
 </script>
 
 <header>
 	<div class="corner">
-		<a href="https://kit.svelte.dev" target="_blank">
-			<img src={logo} alt="SvelteKit" />
+		<a href="https://github.com/Lanezriel" target="_blank">
+			<svelte:component this={github} />
 		</a>
 	</div>
 
@@ -32,13 +40,13 @@
 	</nav>
 
 	<div class="corner">
-		<a href="https://github.com/Lanezriel" target="_blank">
-			<img src={github} alt="GitHub" />
-		</a>
+		<DarkModeToggler />
 	</div>
 </header>
 
 <style>
+  @import 'open-props/easings';
+
 	header {
 		display: flex;
 		justify-content: space-between;
@@ -57,26 +65,29 @@
 		height: 100%;
 	}
 
-	.corner img {
-		width: 2em;
-		height: 2em;
-		object-fit: contain;
-	}
+  .corner a :global(svg) {
+    width: 2rem;
+    height: 2rem;
+    color: var(--icon-fill);
+  }
+
+  .corner a:hover :global(svg) {
+    color: var(--icon-fill-hover);
+  }
 
 	nav {
 		display: flex;
 		justify-content: center;
-		--background: rgba(255, 255, 255, 0.7);
 	}
 
-	svg {
-		width: 2em;
-		height: 3em;
-		display: block;
-	}
+  svg {
+    width: 2em;
+    height: 3em;
+    display: block;
+  }
 
 	path {
-		fill: var(--background);
+		fill: var(--nav-background);
 	}
 
 	ul {
@@ -88,7 +99,7 @@
 		justify-content: center;
 		align-items: center;
 		list-style: none;
-		background: var(--background);
+		background: var(--nav-background);
 		background-size: contain;
 	}
 

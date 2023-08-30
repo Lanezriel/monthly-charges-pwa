@@ -6,5 +6,7 @@ export const trailingSlash = 'always';
 
 export async function load() {
   const test = await get('test');
-  return { test };
+  const preferences = await get('preferences');
+
+  return { test, preferences };
 } 
