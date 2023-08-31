@@ -35,6 +35,7 @@
     height: 4rem;
     position: sticky;
     bottom: 0;
+    view-transition-name: footer;
 	}
 
   nav {
@@ -74,6 +75,7 @@
 		left: calc(50% - var(--size));
 		border: var(--size) solid transparent;
 		border-bottom: var(--size) solid var(--color-theme-1);
+    view-transition-name: active-page;
 	}
 
 	nav a {

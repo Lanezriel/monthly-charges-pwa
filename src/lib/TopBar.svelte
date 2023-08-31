@@ -38,6 +38,7 @@
     position: sticky;
     top: 0;
     padding: 0 0.5rem;
+    view-transition-name: header;
 	}
 
   h1 {

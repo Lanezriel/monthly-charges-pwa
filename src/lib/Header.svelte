@@ -43,6 +43,7 @@
 	header {
 		display: flex;
 		justify-content: space-between;
+    view-transition-name: header;
 	}
 
 	.corner {
@@ -111,6 +112,7 @@
 		left: calc(50% - var(--size));
 		border: var(--size) solid transparent;
 		border-top: var(--size) solid var(--color-theme-1);
+    view-transition-name: active-page;
 	}
 
 	nav a {
