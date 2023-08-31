@@ -1,7 +1,7 @@
 const a = /* @__PURE__ */ location.pathname.split("/").slice(0, -1).join("/"), i = [
-  a + "/_app/immutable/entry/app.2dd249f2.js",
-  a + "/_app/immutable/assets/0.fe47eb9b.css",
-  a + "/_app/immutable/nodes/0.8f33acf1.js",
+  a + "/_app/immutable/entry/app.35d93e82.js",
+  a + "/_app/immutable/assets/0.a483ac78.css",
+  a + "/_app/immutable/nodes/0.bfb20201.js",
   a + "/_app/immutable/assets/fira-mono-cyrillic-ext-400-normal.3df7909e.woff2",
   a + "/_app/immutable/assets/fira-mono-all-400-normal.1e3b098c.woff",
   a + "/_app/immutable/assets/fira-mono-cyrillic-400-normal.c7d433fd.woff2",
@@ -9,18 +9,18 @@ const a = /* @__PURE__ */ location.pathname.split("/").slice(0, -1).join("/"), i
   a + "/_app/immutable/assets/fira-mono-greek-400-normal.a8be01ce.woff2",
   a + "/_app/immutable/assets/fira-mono-latin-ext-400-normal.6bfabd30.woff2",
   a + "/_app/immutable/assets/fira-mono-latin-400-normal.e43b3538.woff2",
-  a + "/_app/immutable/nodes/1.cec6c6d9.js",
+  a + "/_app/immutable/nodes/1.bac710ae.js",
   a + "/_app/immutable/assets/2.9d45a74d.css",
   a + "/_app/immutable/nodes/2.e9eb04f9.js",
   a + "/_app/immutable/assets/3.203a94cf.css",
-  a + "/_app/immutable/nodes/3.416eecdb.js",
-  a + "/_app/immutable/nodes/4.28489c1d.js",
+  a + "/_app/immutable/nodes/3.6814a90a.js",
+  a + "/_app/immutable/nodes/4.9f815823.js",
   a + "/_app/immutable/chunks/index.43038c9e.js",
-  a + "/_app/immutable/chunks/paths.7a8c03ca.js",
+  a + "/_app/immutable/chunks/paths.8d62b5e6.js",
   a + "/_app/immutable/chunks/scheduler.a00299e9.js",
-  a + "/_app/immutable/chunks/singletons.c1a4b76c.js",
-  a + "/_app/immutable/chunks/stores.ece2d823.js",
-  a + "/_app/immutable/entry/start.11946036.js"
+  a + "/_app/immutable/chunks/singletons.c06f7bd3.js",
+  a + "/_app/immutable/chunks/stores.3c29b6c9.js",
+  a + "/_app/immutable/entry/start.50cbb503.js"
 ], m = [
   a + "/.nojekyll",
   a + "/favicon.png",
@@ -28,7 +28,7 @@ const a = /* @__PURE__ */ location.pathname.split("/").slice(0, -1).join("/"), i
   a + "/icon512.png",
   a + "/robots.txt",
   a + "/touch-icon.png"
-], p = "1693505210064", n = self, l = "monthly-charges", c = `${l}_${p}`, r = i.concat(m);
+], p = "1693507669354", n = self, l = "monthly-charges", c = `${l}_${p}`, r = i.concat(m);
 n.addEventListener("install", (e) => {
   e.waitUntil(
     caches.open(c).then((s) => s.addAll(r)).then(() => {
