@@ -43,6 +43,7 @@
   
   // Other reactives
   $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : '';
+  $: themeColorMeta = $preferences.isDark ? '<meta name="theme-color" content="#1e1e29">' : '<meta name="theme-color" content="#cedce8">';
 
   function checkPrefersColorScheme() {
     return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -69,6 +70,7 @@
 
 <svelte:head>
   {@html webManifestLink}
+  {@html themeColorMeta}
 </svelte:head>
 
 <svelte:window on:resize={handleResize} />
