@@ -75,7 +75,7 @@
   {@html themeColorMeta}
 </svelte:head>
 
-<svelte:window on:resize={handleResize} />
+<svelte:window on:resize={handleResize} on:orientationchange={handleResize} />
 
 <div class="app">
   {#if $utils.isDesktop}
