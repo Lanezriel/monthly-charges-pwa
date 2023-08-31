@@ -38,6 +38,9 @@
 
 <style>
   .theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: none;
     border: none;
     padding: 0;

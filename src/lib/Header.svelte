@@ -23,8 +23,8 @@
 			<li aria-current={$page.url.pathname === basePath ? 'page' : undefined}>
 				<a href="{basePath}">Home</a>
 			</li>
-      <li aria-current={$page.url.pathname === `${base}/template/` ? 'page' : undefined}>
-				<a href="{base}/template/">Template</a>
+      <li aria-current={$page.url.pathname === `${base}/settings/` ? 'page' : undefined}>
+				<a href="{base}/settings/">Settings</a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">

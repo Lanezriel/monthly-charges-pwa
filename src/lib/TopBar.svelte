@@ -2,14 +2,21 @@
   import { page } from '$app/stores';
 
 	import github from '$lib/svg/github.svelte';
+  import arrowBackRounded from '$lib/svg/arrowBackRounded.svelte';
   import DarkModeToggler from '$lib/DarkModeToggler.svelte';
 </script>
 
 <header>
   <div class="corner">
-		<a href="https://github.com/Lanezriel" target="_blank">
-			<svelte:component this={github} />
-		</a>
+    {#if $page.data.type === 'main'}
+      <a href="https://github.com/Lanezriel" target="_blank">
+        <svelte:component this={github} />
+      </a>
+    {:else}
+      <a href="{$page.data.backURL}">
+        <svelte:component this={arrowBackRounded} />
+      </a>
+    {/if}
 	</div>
 
 	<h1>{$page.data.title}</h1>
@@ -30,6 +37,7 @@
     height: 4rem;
     position: sticky;
     top: 0;
+    padding: 0 0.5rem;
 	}
 
   h1 {

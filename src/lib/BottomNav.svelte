@@ -17,10 +17,10 @@
           <span>Home</span>
         </a>
 			</li>
-      <li aria-current={$page.url.pathname === `${base}/template/` ? 'page' : undefined}>
-				<a href="{base}/template/">
+      <li aria-current={$page.url.pathname === `${base}/settings/` ? 'page' : undefined}>
+				<a href="{base}/settings/">
           <svelte:component this={cog} />
-          <span>Template</span>
+          <span>Settings</span>
         </a>
 			</li>
 		</ul>

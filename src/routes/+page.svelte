@@ -12,7 +12,7 @@
 
 <svelte:head>
 	<title>Monthly charges - Home</title>
-	<meta name="description" content="Monthly charges home page" />
+	<meta name="description" content="Home page" />
 </svelte:head>
 
 <section>
