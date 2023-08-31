@@ -12,7 +12,7 @@
 	--color-text: rgba(0, 0, 0, 0.7);
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
-	--nav-background: rgba(255, 255, 255, 0.7);
+	--nav-background: rgb(240, 244, 247);
 	--icon-fill: rgba(0, 0, 0, 0.7);
 	--icon-fill-hover: rgba(0, 0, 0, 0.6);
 
@@ -27,9 +27,15 @@
 	--color-theme-1: #ff3e00;
 	--color-theme-2: #7ab0e2;
 	--color-text: rgba(255, 255, 255, 0.8);
-	--nav-background: hsla(240, 15%, 8%, 0.7);
+	--nav-background: hsl(240, 15%, 6%);
 	--icon-fill: rgba(255, 255, 255, 0.8);
 	--icon-fill-hover: rgba(255, 255, 255, 0.7);
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
 }
 
 body {

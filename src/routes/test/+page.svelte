@@ -1,6 +1,11 @@
 <script>
 </script>
 
+<svelte:head>
+	<title>Monthly charges - Test</title>
+	<meta name="description" content="Monthly charges test page" />
+</svelte:head>
+
 <section>
   <h1>Test</h1>
   <p>I'm only here to test navbar and service worker</p>

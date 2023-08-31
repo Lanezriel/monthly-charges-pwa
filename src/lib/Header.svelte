@@ -1,7 +1,6 @@
 <script>
 	import { page } from '$app/stores';
   import { base } from '$app/paths';
-  import { getContext } from 'svelte';
 
 	import github from '$lib/svg/github.svelte';
   import DarkModeToggler from '$lib/DarkModeToggler.svelte';

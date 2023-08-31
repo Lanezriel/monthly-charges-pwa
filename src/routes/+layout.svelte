@@ -4,7 +4,11 @@
   import { set } from 'idb-keyval';
   import { pwaInfo } from 'virtual:pwa-info';
   import { dev } from '$app/environment';
+
 	import Header from '$lib/Header.svelte';
+  import TopBar from '$lib/TopBar.svelte';
+  import BottomNav from '$lib/BottomNav.svelte';
+
 	import './styles.css';
 
   // Retrieve data from +layout.js (which retrieved data from indexedDB)
@@ -14,6 +18,9 @@
   // Initiate stores
   const test = writable(data.test || { isSmall: false, isTeal: false });
   setContext('test', test);
+
+  const utils = writable({ isDesktop: window.innerWidth >= 720 });
+  setContext('utils', utils);
   
   const preferences = writable(data.preferences || { isDark: checkPrefersColorScheme() });
   setContext('preferences', preferences);
@@ -54,22 +61,36 @@
   async function updateIDB(key, object) {
     await set(key, object);
   }
+
+  function handleResize() {
+    $utils.isDesktop = window.innerWidth >= 720;
+  }
 </script>
 
 <svelte:head>
   {@html webManifestLink}
 </svelte:head>
 
+<svelte:window on:resize={handleResize} />
+
 <div class="app">
-	<Header />
+  {#if $utils.isDesktop}
+	  <Header />
+  {:else}
+    <TopBar />
+  {/if}
 
 	<main>
 		<slot />
 	</main>
 
-	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-	</footer>
+  {#if $utils.isDesktop}
+    <footer>
+      <p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+    </footer>
+  {:else}
+    <BottomNav />
+  {/if}
 </div>
 
 <style>
