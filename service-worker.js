@@ -1,7 +1,7 @@
 const a = /* @__PURE__ */ location.pathname.split("/").slice(0, -1).join("/"), i = [
-  a + "/_app/immutable/entry/app.836ad4cd.js",
+  a + "/_app/immutable/entry/app.2f483747.js",
   a + "/_app/immutable/assets/0.12a30921.css",
-  a + "/_app/immutable/nodes/0.ce5b6f8b.js",
+  a + "/_app/immutable/nodes/0.47b2166d.js",
   a + "/_app/immutable/assets/fira-mono-cyrillic-ext-400-normal.3df7909e.woff2",
   a + "/_app/immutable/assets/fira-mono-all-400-normal.1e3b098c.woff",
   a + "/_app/immutable/assets/fira-mono-cyrillic-400-normal.c7d433fd.woff2",
@@ -9,16 +9,16 @@ const a = /* @__PURE__ */ location.pathname.split("/").slice(0, -1).join("/"), i
   a + "/_app/immutable/assets/fira-mono-greek-400-normal.a8be01ce.woff2",
   a + "/_app/immutable/assets/fira-mono-latin-ext-400-normal.6bfabd30.woff2",
   a + "/_app/immutable/assets/fira-mono-latin-400-normal.e43b3538.woff2",
-  a + "/_app/immutable/nodes/1.4483c675.js",
+  a + "/_app/immutable/nodes/1.efc62ea7.js",
   a + "/_app/immutable/assets/2.e64809d5.css",
   a + "/_app/immutable/nodes/2.bf29c88e.js",
   a + "/_app/immutable/assets/3.203a94cf.css",
   a + "/_app/immutable/nodes/3.ab1b314c.js",
   a + "/_app/immutable/chunks/index.43038c9e.js",
   a + "/_app/immutable/chunks/scheduler.a00299e9.js",
-  a + "/_app/immutable/chunks/singletons.9084ce47.js",
-  a + "/_app/immutable/chunks/stores.605a9d02.js",
-  a + "/_app/immutable/entry/start.ac47dc02.js"
+  a + "/_app/immutable/chunks/singletons.0511796c.js",
+  a + "/_app/immutable/chunks/stores.0cb91900.js",
+  a + "/_app/immutable/entry/start.c4e27fbb.js"
 ], m = [
   a + "/.nojekyll",
   a + "/favicon.png",
@@ -26,7 +26,7 @@ const a = /* @__PURE__ */ location.pathname.split("/").slice(0, -1).join("/"), i
   a + "/icon512.png",
   a + "/robots.txt",
   a + "/touch-icon.png"
-], l = "1693486620166", n = self, p = "monthly-charges", c = `${p}_${l}`, r = i.concat(m);
+], l = "1693490234949", n = self, p = "monthly-charges", c = `${p}_${l}`, r = i.concat(m);
 n.addEventListener("install", (e) => {
   e.waitUntil(
     caches.open(c).then((s) => s.addAll(r)).then(() => {
