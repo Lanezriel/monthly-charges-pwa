@@ -43,7 +43,9 @@
   
   // Other reactives
   $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : '';
-  $: themeColorMeta = $preferences.isDark ? '<meta name="theme-color" content="#1e1e29">' : '<meta name="theme-color" content="#cedce8">';
+  $: themeColorMeta = $preferences.isDark
+    ? '<meta name="theme-color" content="hsl(240, 15%, 6%)">'
+    : '<meta name="theme-color" content="rgb(240, 244, 247)">';
 
   function checkPrefersColorScheme() {
     return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
