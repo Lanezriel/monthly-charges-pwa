@@ -3,7 +3,7 @@
   import { base } from '$app/paths';
 
   import home from '$lib/svg/home.svelte';
-  import testTube from '$lib/svg/testTube.svelte';
+  import cog from '$lib/svg/cog.svelte';
 
   $: basePath = base === '' ? '/' : `${base}/`;
 </script>
@@ -17,10 +17,10 @@
           <span>Home</span>
         </a>
 			</li>
-      <li aria-current={$page.url.pathname === `${base}/test/` ? 'page' : undefined}>
-				<a href="{base}/test/">
-          <svelte:component this={testTube} />
-          <span>Test</span>
+      <li aria-current={$page.url.pathname === `${base}/template/` ? 'page' : undefined}>
+				<a href="{base}/template/">
+          <svelte:component this={cog} />
+          <span>Template</span>
         </a>
 			</li>
 		</ul>

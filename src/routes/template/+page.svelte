@@ -7,8 +7,8 @@
 </svelte:head>
 
 <section>
-  <h1>Test</h1>
-  <p>I'm only here to test navbar and service worker</p>
+  <h1>Template</h1>
+  <p>To be done</p>
 </section>
 
 <style>
