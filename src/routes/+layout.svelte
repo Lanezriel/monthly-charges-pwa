@@ -43,6 +43,9 @@
   
   // Other reactives
   $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : '';
+  $: iOSStatusBarMeta = $preferences.isDark
+    ? '<meta name="apple-mobile-web-app-status-bar-style" content="black">'
+    : '<meta name="apple-mobile-web-app-status-bar-style" content="default">';
 
   function checkPrefersColorScheme() {
     return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -69,6 +72,7 @@
 
 <svelte:head>
   {@html webManifestLink}
+  {@html iOSStatusBarMeta}
 </svelte:head>
 
 <svelte:window on:resize={handleResize} />
