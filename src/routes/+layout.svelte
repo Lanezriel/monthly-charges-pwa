@@ -19,7 +19,7 @@
   const test = writable(data.test || { isSmall: false, isTeal: false });
   setContext('test', test);
 
-  const utils = writable({ isDesktop: window.innerWidth >= 720 });
+  const utils = writable({ isDesktop: window.innerWidth >= 600 });
   setContext('utils', utils);
   
   const preferences = writable(data.preferences || { isDark: checkPrefersColorScheme() });
@@ -63,7 +63,7 @@
   }
 
   function handleResize() {
-    $utils.isDesktop = window.innerWidth >= 720;
+    $utils.isDesktop = window.innerWidth >= 600;
   }
 </script>
 
