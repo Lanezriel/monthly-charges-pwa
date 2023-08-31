@@ -30,7 +30,6 @@
 <style>
   footer {
 		display: flex;
-		justify-content: space-around;
     align-items: center;
     background: var(--nav-background);
     height: 4rem;
@@ -39,6 +38,7 @@
 	}
 
   nav {
+    width: 100%;
 		display: flex;
 		justify-content: center;
     height: 100%;
@@ -48,9 +48,10 @@
 		position: relative;
 		padding: 0;
 		margin: 0;
+    width: 100%;
 		height: 100%;
 		display: flex;
-		justify-content: center;
+		justify-content: space-around;
 		align-items: center;
 		list-style: none;
 		background: var(--nav-background);
@@ -59,6 +60,7 @@
 
 	li {
 		position: relative;
+    width: 100%;
 		height: 100%;
 	}
 
