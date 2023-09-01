@@ -112,7 +112,7 @@
 	main {
 		flex: 1;
 		display: grid;
-    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
 		grid-template-columns: 1fr;
 		padding: 1rem;
 		width: 100%;
