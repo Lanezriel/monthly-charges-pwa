@@ -3,9 +3,9 @@
 
   export let pathname = '';
 
-  const duration = 300;
-  const delay = duration + 100;
-  const x = 10;
+  const duration = 500;
+  const delay = duration + 150;
+  const x = 100;
 
   const inParams = { x, duration, delay };
   const outParams = { x: -x, duration };
