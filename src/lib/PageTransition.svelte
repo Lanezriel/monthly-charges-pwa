@@ -3,7 +3,7 @@
 
   export let pathname = '';
 
-  const duration = 500;
+  const duration = 300;
   const delay = duration + 150;
   const x = 100;
 
