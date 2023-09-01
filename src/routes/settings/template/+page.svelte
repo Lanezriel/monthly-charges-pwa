@@ -100,6 +100,7 @@
     }
 
     :global([data-dark-mode]) .charges {
+      background: rgba(0, 0, 0, 0.2);
       border: solid 1px rgba(255, 255, 255, 0.05);
     }
 
