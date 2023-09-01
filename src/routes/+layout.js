@@ -4,9 +4,11 @@ export const prerender = false;
 export const ssr = false;
 export const trailingSlash = 'always';
 
-export async function load() {
+export async function load({ url }) {
+  const { pathname } = url;
+
   const test = await get('test');
   const preferences = await get('preferences');
 
-  return { test, preferences };
+  return { pathname, test, preferences };
 } 

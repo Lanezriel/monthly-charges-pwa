@@ -13,6 +13,7 @@
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
 	--nav-background: rgb(240, 244, 247);
+	--nav-height: 4rem;
 	--icon-fill: rgba(0, 0, 0, 0.7);
 	--icon-fill-hover: rgba(0, 0, 0, 0.6);
 
@@ -120,6 +121,10 @@ button:focus:not(:focus-visible) {
 }
 
 @media (min-width: 600px) {
+	:root {
+		--nav-height: 3rem;
+	}
+
 	h1 {
 		font-size: 2.4rem;
 	}

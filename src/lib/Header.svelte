@@ -43,12 +43,11 @@
 	header {
 		display: flex;
 		justify-content: space-between;
-    view-transition-name: header;
 	}
 
 	.corner {
-		width: 3em;
-		height: 3em;
+		width: 3rem;
+		height: 3rem;
 	}
 
 	.corner a {
@@ -112,7 +111,6 @@
 		left: calc(50% - var(--size));
 		border: var(--size) solid transparent;
 		border-top: var(--size) solid var(--color-theme-1);
-    view-transition-name: active-page;
 	}
 
 	nav a {
