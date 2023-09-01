@@ -8,7 +8,7 @@ export async function load({ url }) {
   const { pathname } = url;
 
   const test = await get('test');
-  const preferences = await get('preferences');
+  const settings = await get('settings');
 
-  return { pathname, test, preferences };
+  return { pathname, test, settings };
 } 

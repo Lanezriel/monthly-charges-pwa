@@ -8,10 +8,12 @@
 
 	import Header from '$lib/Header.svelte';
   import TopBar from '$lib/TopBar.svelte';
+	import PageTransition from '$lib/PageTransition.svelte';
   import BottomNav from '$lib/BottomNav.svelte';
 
+  import defaultTemplate from '$lib/utils/defaultTemplate.js';
+
 	import './styles.css';
-	import PageTransition from '../lib/PageTransition.svelte';
 
   // Retrieve data from +layout.js (which retrieved data from indexedDB)
   /** @type {import('./$types').PageData} */
@@ -23,14 +25,14 @@
 
   const utils = writable({ isDesktop: window.innerWidth >= 600 });
   setContext('utils', utils);
-  
-  const preferences = writable(data.preferences || { isDark: checkPrefersColorScheme() });
-  setContext('preferences', preferences);
+
+  const settings = writable(data.settings || { isDark: checkPrefersColorScheme(), currency: '€', template: defaultTemplate });
+  setContext('settings', settings);
   
   // Update on system preference change
   if (window.matchMedia) {
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
-      $preferences.isDark = event.matches;
+      $settings.isDark = event.matches;
     })
   }
   
@@ -40,13 +42,13 @@
 
   // Update indexedDb when store has changes
   $: $test, updateIDB('test', $test);
-  $: $preferences, updateIDB('preferences', $preferences);
-  $: $preferences.isDark, toggleHTMLDarkMode($preferences.isDark);
+  $: $settings, updateIDB('settings', $settings);
+  $: $settings.isDark, toggleHTMLDarkMode($settings.isDark);
   
   // Other reactives
   $: pathname = data.pathname;
   $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : '';
-  $: themeColorMeta = $preferences.isDark
+  $: themeColorMeta = $settings.isDark
     ? '<meta name="theme-color" content="hsl(240, 15%, 6%)">'
     : '<meta name="theme-color" content="rgb(240, 244, 247)">';
 
@@ -114,11 +116,9 @@
 		display: grid;
     grid-template-rows: 1fr;
 		grid-template-columns: 1fr;
-		padding: 1rem;
 		width: 100%;
 		max-width: 64rem;
 		margin: 0 auto;
-		box-sizing: border-box;
     overflow-x: hidden;
 	}
 

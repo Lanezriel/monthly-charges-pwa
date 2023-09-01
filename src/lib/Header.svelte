@@ -3,6 +3,7 @@
   import { base } from '$app/paths';
 
 	import github from '$lib/svg/github.svelte';
+  import arrowBackRounded from '$lib//svg/arrowBackRounded.svelte';
   import DarkModeToggler from '$lib/DarkModeToggler.svelte';
 
   $: basePath = base === '' ? '/' : `${base}/`;
@@ -20,6 +21,11 @@
 			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
 		</svg>
 		<ul>
+      {#if $page.data.type === 'sub'}
+        <a href="{$page.data.backURL}" class="back-icon">
+          <svelte:component this={arrowBackRounded} />
+        </a>
+      {/if}
 			<li aria-current={$page.url.pathname === basePath ? 'page' : undefined}>
 				<a href="{basePath}">Home</a>
 			</li>
@@ -95,6 +101,11 @@
 		background: var(--nav-background);
 		background-size: contain;
 	}
+
+  .back-icon {
+    position: absolute;
+    left: -5rem;
+  }
 
 	li {
 		position: relative;
