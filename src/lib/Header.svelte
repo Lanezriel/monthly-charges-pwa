@@ -67,11 +67,12 @@
   .corner a :global(svg) {
     width: 2rem;
     height: 2rem;
-    color: var(--icon-fill);
+    color: var(--color-text);
+    transition: color 200ms linear;
   }
 
   .corner a:hover :global(svg) {
-    color: var(--icon-fill-hover);
+    color: var(--color-theme-1);
   }
 
 	nav {
@@ -135,7 +136,7 @@
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
 		text-decoration: none;
-		transition: color 0.2s linear;
+		transition: color 200ms linear;
 	}
 
 	a:hover {

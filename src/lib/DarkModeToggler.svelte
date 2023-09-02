@@ -61,27 +61,20 @@
     width: 2rem;
     height: 2rem;
     stroke-linecap: round;
+    color: var(--color-text);
+    transition: color 200ms linear;
+  }
+
+  .theme-toggle > svg:hover {
+    color: var(--color-theme-1);
   }
 
   .sun-and-moon > :is(.moon, .sun, .sun-beams) {
     transform-origin: center center;
   }
 
-  .sun-and-moon > :is(.moon, .sun) {
-    fill: var(--icon-fill);
-  }
-
-  .theme-toggle:is(:hover, :focus-visible) > .sun-and-moon > :is(.moon, .sun) {
-    fill: var(--icon-fill-hover);
-  }
-
   .sun-and-moon > .sun-beams {
-    stroke: var(--icon-fill);
     stroke-width: 2px;
-  }
-
-  .theme-toggle:is(:hover, :focus-visible) .sun-and-moon > .sun-beams {
-    stroke: var(--icon-fill-hover);
   }
 
   .sun-and-moon > .sun {
