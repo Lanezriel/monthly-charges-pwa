@@ -60,7 +60,7 @@
     const htmlTag = document.querySelector('html');
 
     if (isDark) {
-      htmlTag.setAttribute('data-dark-mode', true);
+      htmlTag.setAttribute('data-dark-mode', '');
     } else {
       htmlTag.removeAttribute('data-dark-mode');
     }
