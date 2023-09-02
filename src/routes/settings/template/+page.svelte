@@ -106,7 +106,7 @@
 
     .charge {
       background: rgba(0, 0, 0, 0);
-      transition: background 500ms ease-in-out;
+      transition: background 500ms linear;
       cursor: pointer;
     }
 
@@ -129,11 +129,11 @@
 
     :global([data-dark-mode]) .charge {
       background: rgba(0, 0, 0, 0);
-      transition: background 500ms ease-in-out;
+      transition: background 500ms linear;
     }
 
     :global([data-dark-mode]) .charge:hover {
-      background: rgba(0, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.05);
     }
   }
 </style>
