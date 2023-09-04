@@ -1,5 +1,7 @@
 <script>
-	import { getContext } from "svelte";
+	import { getContext } from 'svelte';
+
+  import createRipple from '$lib/utils/createRipple.js';
 
   const test = getContext('test');
 
@@ -19,7 +21,9 @@
 	<h1 class:small-title={$test.isSmall}>Welcome!</h1>
   <p>This page is soon to be completely changed</p>
   <p>The following button exists only for testing the offline local storage</p>
-  <button on:click={toggleIsSmall}>{buttonText}</button>
+  <button on:click={createRipple} on:click={toggleIsSmall}>
+    {buttonText}
+  </button>
 </section>
 
 <style>

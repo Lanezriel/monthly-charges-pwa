@@ -2,6 +2,8 @@
   import { page } from '$app/stores';
 	import { getContext } from "svelte";
 
+  import createRipple from '$lib/utils/createRipple.js';
+
   const utils = getContext('utils');
   const settings = getContext('settings');
 </script>
@@ -17,8 +19,8 @@
   {/if}
 
   <div class="charges">
-    {#each $settings.template.charges as charge}
-      <div class="charge">
+    {#each $settings.template.charges as charge, i}
+      <div class="charge" role="button" tabindex="{i}" on:click={createRipple} on:keydown={createRipple}>
         <h2>{charge.name}</h2>
         <p>{charge.value} {$settings.currency}</p>
       </div>
