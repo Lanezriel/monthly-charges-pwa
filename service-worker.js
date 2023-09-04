@@ -1,7 +1,7 @@
 const a = /* @__PURE__ */ location.pathname.split("/").slice(0, -1).join("/"), i = [
-  a + "/_app/immutable/entry/app.f1ab9ccd.js",
-  a + "/_app/immutable/assets/0.6e7196ce.css",
-  a + "/_app/immutable/nodes/0.58f47453.js",
+  a + "/_app/immutable/entry/app.6f0e1f92.js",
+  a + "/_app/immutable/assets/0.85ad5215.css",
+  a + "/_app/immutable/nodes/0.78294b21.js",
   a + "/_app/immutable/assets/fira-mono-cyrillic-ext-400-normal.3df7909e.woff2",
   a + "/_app/immutable/assets/fira-mono-all-400-normal.1e3b098c.woff",
   a + "/_app/immutable/assets/fira-mono-cyrillic-400-normal.c7d433fd.woff2",
@@ -9,20 +9,20 @@ const a = /* @__PURE__ */ location.pathname.split("/").slice(0, -1).join("/"), i
   a + "/_app/immutable/assets/fira-mono-greek-400-normal.a8be01ce.woff2",
   a + "/_app/immutable/assets/fira-mono-latin-ext-400-normal.6bfabd30.woff2",
   a + "/_app/immutable/assets/fira-mono-latin-400-normal.e43b3538.woff2",
-  a + "/_app/immutable/nodes/1.e5d950cd.js",
+  a + "/_app/immutable/nodes/1.4d4371a2.js",
   a + "/_app/immutable/assets/2.7183e2f2.css",
   a + "/_app/immutable/nodes/2.353c03ec.js",
   a + "/_app/immutable/assets/3.0012764f.css",
-  a + "/_app/immutable/nodes/3.3e1e51d7.js",
-  a + "/_app/immutable/assets/4.e9f8e0a1.css",
-  a + "/_app/immutable/nodes/4.14679a73.js",
+  a + "/_app/immutable/nodes/3.0f939871.js",
+  a + "/_app/immutable/assets/4.2c45f607.css",
+  a + "/_app/immutable/nodes/4.9adabed8.js",
   a + "/_app/immutable/chunks/createRipple.b2cb1a47.js",
   a + "/_app/immutable/chunks/index.a1cd61c0.js",
-  a + "/_app/immutable/chunks/paths.69183288.js",
+  a + "/_app/immutable/chunks/paths.3d9409da.js",
   a + "/_app/immutable/chunks/scheduler.8a3e53af.js",
-  a + "/_app/immutable/chunks/singletons.e00e2e5d.js",
-  a + "/_app/immutable/chunks/stores.3b607c60.js",
-  a + "/_app/immutable/entry/start.2271e183.js"
+  a + "/_app/immutable/chunks/singletons.8de0289d.js",
+  a + "/_app/immutable/chunks/stores.522e69ba.js",
+  a + "/_app/immutable/entry/start.2e3b82f3.js"
 ], m = [
   a + "/.nojekyll",
   a + "/favicon.png",
@@ -30,7 +30,7 @@ const a = /* @__PURE__ */ location.pathname.split("/").slice(0, -1).join("/"), i
   a + "/icon512.png",
   a + "/robots.txt",
   a + "/touch-icon.png"
-], p = "1693816152514", n = self, l = "monthly-charges", c = `${l}_${p}`, r = i.concat(m);
+], p = "1693823268893", n = self, l = "monthly-charges", c = `${l}_${p}`, r = i.concat(m);
 n.addEventListener("install", (e) => {
   e.waitUntil(
     caches.open(c).then((s) => s.addAll(r)).then(() => {
