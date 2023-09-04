@@ -3,7 +3,7 @@ export default {
   charges: [
     {
       index: 0,
-      name: 'Rent',
+      name: 'Rent with a very super long text',
       value: 1000.00,
       paid: false,
     },
