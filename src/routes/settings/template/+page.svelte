@@ -1,6 +1,8 @@
 <script>
   import { page } from '$app/stores';
-	import { getContext } from "svelte";
+	import { getContext } from 'svelte';
+
+  import { openModal, closeModal } from 'svelte-modals';
 
   import edit from '$lib/svg/edit.svelte';
   import deleteForever from '$lib/svg/deleteForever.svelte';
@@ -8,10 +10,17 @@
 
   import createRipple from '$lib/utils/createRipple.js';
 
+  import UpdateCharge from '$lib/modals/UpdateCharge.svelte';
+  import DeleteConfirm from '$lib/modals/DeleteConfirm.svelte';
+
+  // ----------
+
   const utils = getContext('utils');
   const settings = getContext('settings');
 
   let actionIndex = null;
+
+  // ----------
 
   function handleClick(event) {
     createRipple(event);
@@ -24,16 +33,41 @@
     }
   }
 
-  function handleEditClick(event) {
+  function handleEditClick(event, id) {
     createRipple(event);
+
+    openModal(UpdateCharge, {
+      item: $settings.template.charges.find((item) => item.id === id),
+      onValidate: (newItem) => {
+        actionIndex = null;
+        console.log(newItem);
+        closeModal();
+      },
+    });
   }
 
-  function handleDeleteClick(event) {
+  function handleDeleteClick(event, id) {
     createRipple(event);
+
+    openModal(DeleteConfirm, {
+      onDelete: () => {
+        actionIndex = null;
+        $settings.template.charges = $settings.template.charges.filter((item) => item.id !== id);
+        closeModal();
+      },
+    });
   }
 
   function handleAddClick(event) {
     createRipple(event);
+
+    openModal(UpdateCharge, {
+      onValidate: (newItem) => {
+        actionIndex = null;
+        console.log(newItem);
+        closeModal();
+      },
+    });
   }
 </script>
 
@@ -65,8 +99,8 @@
           class:visible={actionIndex === i}
           role="button"
           tabindex="{i}"
-          on:click={handleEditClick}
-          on:keydown={handleEditClick}
+          on:click={(e) => handleEditClick(e, charge.id)}
+          on:keydown={(e) => handleEditClick(e, charge.id)}
         >
           <svelte:component this={edit} />
         </div>
@@ -75,8 +109,8 @@
           class:visible={actionIndex === i}
           role="button"
           tabindex="{i}"
-          on:click={handleDeleteClick}
-          on:keydown={handleDeleteClick}
+          on:click={(e) => handleDeleteClick(e, charge.id)}
+          on:keydown={(e) => handleDeleteClick(e, charge.id)}
         >
           <svelte:component this={deleteForever} />
         </div>
@@ -159,6 +193,10 @@
     background: rgba(0, 0, 0, 0.2);
   }
 
+  .charge > * {
+    pointer-events: none;
+  }
+
   .charge > h2 {
     overflow: hidden;
     white-space: nowrap;
@@ -176,6 +214,7 @@
   .charge.add > :global(svg) {
     width: 3rem;
     height: 3rem;
+    pointer-events: none;
   }
 
   .action {
@@ -188,6 +227,10 @@
                 min-width 200ms linear,
                 background 500ms linear;
     cursor: pointer;
+  }
+
+  .action > :global(svg) {
+    pointer-events: none;
   }
 
   .action.visible {

@@ -6,6 +6,8 @@
   import { set } from 'idb-keyval';
   import { pwaInfo } from 'virtual:pwa-info';
 
+  import { Modals, closeModal } from 'svelte-modals';
+
 	import Header from '$lib/Header.svelte';
   import TopBar from '$lib/TopBar.svelte';
 	import PageTransition from '$lib/PageTransition.svelte';
@@ -14,6 +16,7 @@
   import defaultTemplate from '$lib/utils/defaultTemplate.js';
 
 	import './styles.css';
+	import { fade } from 'svelte/transition';
 
   // Retrieve data from +layout.js (which retrieved data from indexedDB)
   /** @type {import('./$types').PageData} */
@@ -104,6 +107,17 @@
   {/if}
 </div>
 
+<Modals>
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
+  <div
+    slot="backdrop"
+    class="backdrop"
+    transition:fade
+    on:click={closeModal}
+    on:keydown={closeModal}
+  />
+</Modals>
+
 <style>
 	.app {
 		display: flex;
@@ -138,6 +152,15 @@
 	footer a {
 		font-weight: bold;
 	}
+
+  .backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0,0,0,0.50)
+  }
 
 	@media (min-width: 480px) {
 		footer {
