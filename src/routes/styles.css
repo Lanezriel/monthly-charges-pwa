@@ -12,6 +12,7 @@
     --success-bg: hsl(115, 90%, 45%);
     --warning-bg: hsl(30, 91%, 61%);
     --danger-bg: hsl(0, 75%, 64%);
+    --disabled-bg: hsl(0, 0%, 90%);
     --color-theme-1: #ff3e00;
     --color-theme-2: #4075a6;
     --color-text: rgba(0, 0, 0, 0.7);
@@ -39,6 +40,7 @@
     --success-bg: hsl(115, 90%, 30%);
     --warning-bg: hsl(30, 87%, 34%);
     --danger-bg: hsl(0, 83%, 25%);
+    --disabled-bg: hsl(0, 0%, 40%);
     --color-theme-1: #ff3e00;
     --color-theme-2: #7ab0e2;
     --color-text: rgba(255, 255, 255, 0.8);
@@ -247,32 +249,37 @@ span.ripple {
     background: var(--validate-bg);
 }
 
-.modal > .contents > .actions > button.validate {
-    background: var(--success-bg);
-}
-
-.modal > .contents > .actions > button.delete {
-    background: var(--danger-bg);
-}
-
 .modal > .contents > .actions > button.cancel:hover {
     background: color-mix(in srgb, var(--validate-bg), rgb(0, 0, 0) 15%);
-}
-
-.modal > .contents > .actions > button.validate:hover {
-    background: color-mix(in srgb, var(--success-bg), rgb(0, 0, 0) 15%);
-}
-
-.modal > .contents > .actions > button.delete:hover {
-    background: color-mix(in srgb, var(--danger-bg), rgb(0, 0, 0) 15%);
 }
 
 [data-dark-mode] .modal > .contents > .actions > button.cancel:hover {
     background: color-mix(in srgb, var(--validate-bg), rgb(255, 255, 255) 20%);
 }
 
-[data-dark-mode] .modal > .contents > .actions > button.validate:hover {
+.modal > .contents > .actions > button.validate {
+    background: var(--success-bg);
+}
+
+.modal > .contents > .actions > button.validate:disabled {
+    background: var(--disabled-bg);
+    cursor: unset;
+}
+
+.modal > .contents > .actions > button.validate:enabled:hover {
+    background: color-mix(in srgb, var(--success-bg), rgb(0, 0, 0) 15%);
+}
+
+[data-dark-mode] .modal > .contents > .actions > button.validate:enabled:hover {
     background: color-mix(in srgb, var(--success-bg), rgb(255, 255, 255) 20%);
+}
+
+.modal > .contents > .actions > button.delete {
+    background: var(--danger-bg);
+}
+
+.modal > .contents > .actions > button.delete:hover {
+    background: color-mix(in srgb, var(--danger-bg), rgb(0, 0, 0) 15%);
 }
 
 [data-dark-mode] .modal > .contents > .actions > button.delete:hover {

@@ -40,7 +40,10 @@
       item: $settings.template.charges.find((item) => item.id === id),
       onValidate: (newItem) => {
         actionIndex = null;
-        console.log(newItem);
+
+        const index = $settings.template.charges.findIndex((item) => item.id === id);
+        $settings.template.charges[index] = newItem;
+
         closeModal();
       },
     });
@@ -60,12 +63,20 @@
 
   function handleAddClick(event) {
     createRipple(event);
+    actionIndex = null;
 
     openModal(UpdateCharge, {
       title: 'Create a charge',
       onValidate: (newItem) => {
-        actionIndex = null;
-        console.log(newItem);
+        $settings.template.charges = [
+          ...$settings.template.charges,
+          {
+            ...newItem,
+            id: crypto.randomUUID(),
+            paid: false,
+          },
+        ];
+
         closeModal();
       },
     });
