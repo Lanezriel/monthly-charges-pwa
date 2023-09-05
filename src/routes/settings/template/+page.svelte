@@ -91,7 +91,7 @@
 	<meta name="description" content="Template definitions" />
 </svelte:head>
 
-{#each $settings.template.charges as charge, i}
+{#each $settings.template.charges as charge (charge.id)}
   <ItemWrapper>
     <ItemEntry clickCallback={(e) => handleClick(e, charge.id)}>
       <h2>{charge.name}</h2>
