@@ -6,7 +6,7 @@
   export let isOpen;
 
   // our props
-  export let title = 'Update charge';
+  export let title = 'Update a charge';
   export let item  = null;
   export let onValidate;
 

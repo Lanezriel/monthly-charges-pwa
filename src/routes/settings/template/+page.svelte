@@ -62,6 +62,7 @@
     createRipple(event);
 
     openModal(UpdateCharge, {
+      title: 'Create a charge',
       onValidate: (newItem) => {
         actionIndex = null;
         console.log(newItem);
