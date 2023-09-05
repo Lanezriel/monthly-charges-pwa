@@ -11,6 +11,7 @@
 
   import UpdateCharge from '$lib/modals/UpdateCharge.svelte';
   import DeleteConfirm from '$lib/modals/DeleteConfirm.svelte';
+  import ItemWrapper from '$lib/containers/ItemWrapper.svelte';
 
   // ----------
 
@@ -88,7 +89,7 @@
 </svelte:head>
 
 {#each $settings.template.charges as charge, i}
-  <div class="charge-wrapper">
+  <ItemWrapper>
     <div
       class="charge"
       role="button"
@@ -119,9 +120,9 @@
     >
       <svelte:component this={deleteForever} />
     </div>
-  </div>
+  </ItemWrapper>
 {/each}
-<div class="charge-wrapper">
+<ItemWrapper>
   <div
     class="charge add"
     role="button"
@@ -131,7 +132,7 @@
   >
     <svelte:component this={plusRounded} />
   </div>
-</div>
+</ItemWrapper>
 
 <style>
   h2 {
@@ -142,20 +143,6 @@
 
   p {
     margin: 0;
-  }
-
-  .charge-wrapper {
-    display: flex;
-    width: 100%;
-    align-items: stretch;
-  }
-
-  .charge-wrapper:not(:last-child) {
-    border-bottom: solid 1px rgba(0, 0, 0, 0.1);
-  }
-
-  :global([data-dark-mode]) .charge-wrapper:not(:last-child) {
-    border-bottom: solid 1px rgba(255, 255, 255, 0.05);
   }
 
   .charge {
@@ -236,19 +223,6 @@
 
     .charge:hover {
       background: rgba(0, 0, 0, 0.1);
-    }
-
-    .charge-wrapper:first-child {
-      border-radius: 1rem 1rem 0 0;
-    }
-
-    .charge-wrapper:last-child {
-      border-radius: 0 0 1rem 1rem;
-    }
-
-    /* Order matters here */
-    .charge-wrapper:only-child {
-      border-radius: 1rem;
     }
 
     :global([data-dark-mode]) .charge {
