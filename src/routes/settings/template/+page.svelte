@@ -12,6 +12,8 @@
   import UpdateCharge from '$lib/modals/UpdateCharge.svelte';
   import DeleteConfirm from '$lib/modals/DeleteConfirm.svelte';
   import ItemWrapper from '$lib/containers/ItemWrapper.svelte';
+  import ItemEntry from '$lib/containers/ItemEntry.svelte';
+	import ItemAction from '$lib/ItemAction.svelte';
 
   // ----------
 
@@ -55,7 +57,9 @@
     openModal(DeleteConfirm, {
       onDelete: () => {
         actionIndex = null;
+
         $settings.template.charges = $settings.template.charges.filter((item) => item.id !== id);
+
         closeModal();
       },
     });
@@ -90,48 +94,29 @@
 
 {#each $settings.template.charges as charge, i}
   <ItemWrapper>
-    <div
-      class="charge"
-      role="button"
-      tabindex="{i}"
-      on:click={handleClick}
-      on:keydown={handleClick}
-    >
+    <ItemEntry index={i} clickCallback={handleClick}>
       <h2>{charge.name}</h2>
       <p>{charge.value} {$settings.currency}</p>
-    </div>
-    <div
-      class="action edit"
-      class:visible={actionIndex === i}
-      role="button"
-      tabindex="{i}"
-      on:click={(e) => handleEditClick(e, charge.id)}
-      on:keydown={(e) => handleEditClick(e, charge.id)}
-    >
-      <svelte:component this={edit} />
-    </div>
-    <div
-      class="action delete"
-      class:visible={actionIndex === i}
-      role="button"
-      tabindex="{i}"
-      on:click={(e) => handleDeleteClick(e, charge.id)}
-      on:keydown={(e) => handleDeleteClick(e, charge.id)}
-    >
-      <svelte:component this={deleteForever} />
-    </div>
+    </ItemEntry>
+
+    <ItemAction
+      type="edit"
+      isVisible={actionIndex === i}
+      clickCallback={(e) => handleEditClick(e, charge.id)}
+      icon={edit}
+    />
+    <ItemAction
+      type="delete"
+      isVisible={actionIndex === i}
+      clickCallback={(e) => handleDeleteClick(e, charge.id)}
+      icon={deleteForever}
+    />
   </ItemWrapper>
 {/each}
 <ItemWrapper>
-  <div
-    class="charge add"
-    role="button"
-    tabindex="{$settings.template.charges.length}"
-    on:click={handleAddClick}
-    on:keydown={handleAddClick}
-  >
+  <ItemEntry index={$settings.template.charges.length} clickCallback={handleAddClick} centered>
     <svelte:component this={plusRounded} />
-  </div>
+  </ItemEntry>
 </ItemWrapper>
 
 <style>
@@ -139,115 +124,13 @@
     font-size: 1.2rem;
     font-weight: bold;
     margin: 0;
-  }
-
-  p {
-    margin: 0;
-  }
-
-  .charge {
-    flex-grow: 1;
-    min-width: 0;
-    height: 4.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.25rem;
-    padding: 0 1rem;
-    background: rgba(0, 0, 0, 0.05);
-  }
-
-  :global([data-dark-mode]) .charge {
-    background: rgba(0, 0, 0, 0.2);
-  }
-
-  .charge > * {
-    pointer-events: none;
-  }
-
-  .charge > h2 {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
-  .charge > p {
+  p {
     flex-shrink: 0;
-  }
-
-  .charge.add {
-    justify-content: center;
-  }
-
-  .charge.add > :global(svg) {
-    width: 3rem;
-    height: 3rem;
-    pointer-events: none;
-  }
-
-  .action {
-    width: 0;
-    min-width: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: width 200ms linear,
-                min-width 200ms linear,
-                background 500ms linear;
-    cursor: pointer;
-  }
-
-  .action > :global(svg) {
-    pointer-events: none;
-  }
-
-  .action.visible {
-    width: 4rem;
-    min-width: 4rem;
-  }
-
-  .action.edit {
-    background: var(--warning-bg);
-  }
-
-  .action.delete {
-    background: var(--danger-bg);
-  }
-
-  @media (min-width: 600px) {
-    .charge {
-      background: rgba(0, 0, 0, 0);
-      transition: background 500ms linear;
-      cursor: pointer;
-    }
-
-    .charge:hover {
-      background: rgba(0, 0, 0, 0.1);
-    }
-
-    :global([data-dark-mode]) .charge {
-      background: rgba(0, 0, 0, 0);
-      transition: background 500ms linear;
-    }
-
-    :global([data-dark-mode]) .charge:hover {
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .action.edit:hover {
-      background: color-mix(in srgb, var(--warning-bg), rgb(0, 0, 0) 15%);
-    }
-
-    .action.delete:hover {
-      background: color-mix(in srgb, var(--danger-bg), rgb(0, 0, 0) 15%);
-    }
-
-    :global([data-dark-mode]) .action.edit:hover {
-      background: color-mix(in srgb, var(--warning-bg), rgb(255, 255, 255) 20%);
-    }
-
-    :global([data-dark-mode]) .action.delete:hover {
-      background: color-mix(in srgb, var(--danger-bg), rgb(255, 255, 255) 15%);
-    }
+    margin: 0;
   }
 </style>
