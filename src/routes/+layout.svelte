@@ -9,10 +9,10 @@
 
   import { Modals, closeModal } from 'svelte-modals';
 
-	import Header from '$lib/Header.svelte';
-  import TopBar from '$lib/TopBar.svelte';
-	import PageTransition from '$lib/PageTransition.svelte';
-  import BottomNav from '$lib/BottomNav.svelte';
+	import Header from '$lib/navigation/Header.svelte';
+  import TopBar from '$lib/navigation/TopBar.svelte';
+	import PageTransition from '$lib/containers/PageTransition.svelte';
+  import BottomNav from '$lib/navigation/BottomNav.svelte';
 
   import defaultTemplate from '$lib/utils/defaultTemplate.js';
 
