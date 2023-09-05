@@ -20,18 +20,17 @@
   const utils = getContext('utils');
   const settings = getContext('settings');
 
-  let actionIndex = null;
+  let actionId = null;
 
   // ----------
 
-  function handleClick(event) {
+  function handleClick(event, id) {
     createRipple(event);
 
-    const index = Number(event.currentTarget.attributes.tabIndex.value);
-    if (actionIndex === index) {
-      actionIndex = null
+    if (actionId === id) {
+      actionId = null
     } else {
-      actionIndex = index;
+      actionId = id;
     }
   }
 
@@ -41,7 +40,7 @@
     openModal(UpdateCharge, {
       item: $settings.template.charges.find((item) => item.id === id),
       onValidate: (newItem) => {
-        actionIndex = null;
+        actionId = null;
 
         const index = $settings.template.charges.findIndex((item) => item.id === id);
         $settings.template.charges[index] = newItem;
@@ -56,7 +55,7 @@
 
     openModal(DeleteConfirm, {
       onDelete: () => {
-        actionIndex = null;
+        actionId = null;
 
         $settings.template.charges = $settings.template.charges.filter((item) => item.id !== id);
 
@@ -67,7 +66,7 @@
 
   function handleAddClick(event) {
     createRipple(event);
-    actionIndex = null;
+    actionId = null;
 
     openModal(UpdateCharge, {
       title: 'Create a charge',
@@ -94,27 +93,27 @@
 
 {#each $settings.template.charges as charge, i}
   <ItemWrapper>
-    <ItemEntry index={i} clickCallback={handleClick}>
+    <ItemEntry clickCallback={(e) => handleClick(e, charge.id)}>
       <h2>{charge.name}</h2>
       <p>{charge.value} {$settings.currency}</p>
     </ItemEntry>
 
     <ItemAction
       type="edit"
-      isVisible={actionIndex === i}
+      isVisible={actionId === charge.id}
       clickCallback={(e) => handleEditClick(e, charge.id)}
       icon={edit}
     />
     <ItemAction
       type="delete"
-      isVisible={actionIndex === i}
+      isVisible={actionId === charge.id}
       clickCallback={(e) => handleDeleteClick(e, charge.id)}
       icon={deleteForever}
     />
   </ItemWrapper>
 {/each}
 <ItemWrapper>
-  <ItemEntry index={$settings.template.charges.length} clickCallback={handleAddClick} centered>
+  <ItemEntry clickCallback={handleAddClick} centered>
     <svelte:component this={plusRounded} />
   </ItemEntry>
 </ItemWrapper>

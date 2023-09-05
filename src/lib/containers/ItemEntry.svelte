@@ -1,19 +1,16 @@
 <script>
-  export let index;
   export let centered = false;
   export let clickCallback;
 </script>
 
-<div
+<button
   class="charge"
   class:centered={centered}
-  role="button"
-  tabindex="{index}"
   on:click={clickCallback}
   on:keydown={clickCallback}
 >
   <slot/>
-</div>
+</button>
 
 <style>
   .charge {
@@ -26,6 +23,8 @@
     gap: 0.25rem;
     padding: 0 1rem;
     background: rgba(0, 0, 0, 0.05);
+    border: none;
+    color: unset;
   }
 
   :global([data-dark-mode]) .charge {
