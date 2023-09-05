@@ -1,1 +1,0 @@
-const a=n=>{const e=n.currentTarget,t=document.createElement("span"),s=Math.max(e.clientWidth,e.clientHeight),i=s/2,c=n.clientX-e.offsetLeft-i,l=n.clientY-e.offsetTop-i;t.style.width=t.style.height=`${s}px`,t.style.left=`${c}px`,t.style.top=`${l}px`,t.classList.add("ripple"),e.appendChild(t),t.addEventListener("animationend",()=>e.removeChild(t))};export{a as c};
