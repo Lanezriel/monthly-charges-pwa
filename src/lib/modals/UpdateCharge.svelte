@@ -82,11 +82,6 @@
 {/if}
 
 <style>
-  p {
-    margin: 0;
-    padding: 1rem;
-  }
-
   form {
     display: grid;
     grid-template-rows: fit-content fit-content;
