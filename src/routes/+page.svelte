@@ -18,7 +18,7 @@
 </svelte:head>
 
 <section>
-	<h1 class:small-title={$test.isSmall}>Welcome!</h1>
+	<h2 class:small-title={$test.isSmall}>Welcome!</h2>
   <p>This page is soon to be completely changed</p>
   <p>The following button exists only for testing the offline local storage</p>
   <button on:click={createRipple} on:click={toggleIsSmall}>
@@ -33,15 +33,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 2rem 1rem;
   }
 
-  h1 {
+  h2 {
     font-size: 4rem;
     font-weight: bold;
     margin: 0;
   }
 
-  h1.small-title {
+  h2.small-title {
     font-size: 2rem;
   }
 

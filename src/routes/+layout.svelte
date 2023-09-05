@@ -2,6 +2,7 @@
   import { setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { dev } from '$app/environment';
+  import { page } from '$app/stores';
 
   import { set } from 'idb-keyval';
   import { pwaInfo } from 'virtual:pwa-info';
@@ -94,7 +95,16 @@
 
 	<main>
     <PageTransition {pathname}>
-		  <slot />
+      <section>
+        {#if $utils.isDesktop}
+          <h1>{$page.data.title}</h1>
+        {/if}
+      
+        <div class="wrapper">
+          <slot />
+        </div>
+      </section>
+		  <!-- <slot /> -->
     </PageTransition>
 	</main>
 
@@ -153,6 +163,28 @@
 		font-weight: bold;
 	}
 
+  section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .wrapper {
+    flex-grow: 1;
+    width: 100%;
+    max-width: 100vw;
+  }
+
   .backdrop {
     position: fixed;
     top: 0;
@@ -161,6 +193,33 @@
     left: 0;
     background: rgba(0,0,0,0.2);
     backdrop-filter: blur(4px);
+  }
+
+  @media (min-width: 600px) {
+    section {
+      width: fit-content;
+      min-width: 400px;
+      margin: auto;
+      padding-top: 2rem;
+    }
+
+    .wrapper {
+      flex-grow: unset;
+      min-width: 400px;
+      max-width: 400px;
+      width: fit-content;
+      max-height: calc(100% - 2.5rem);
+      overflow-y: auto;
+      background: rgba(0, 0, 0, 0.05);
+      border: solid 1px rgba(0, 0, 0, 0.1);
+      border-radius: 1rem;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    :global([data-dark-mode]) .wrapper {
+      background: rgba(0, 0, 0, 0.2);
+      border: solid 1px rgba(255, 255, 255, 0.05);
+    }
   }
 
 	@media (min-width: 480px) {

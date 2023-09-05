@@ -7,24 +7,28 @@
 	<meta name="description" content="Settings" />
 </svelte:head>
 
-<section>
-  <h1>Settings</h1>
+<div>
   <p>To be done</p>
   <a href="{base}/settings/template/">Template</a>
-</section>
+</div>
 
 <style>
-  section {
+  div {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 1rem;
+    padding: 2rem 1rem;
   }
 
-  h1 {
-    font-size: 4rem;
-    font-weight: bold;
+  p {
     margin: 0;
+    padding: 0;
+  }
+
+  a {
+    font-weight: bold;
   }
 </style>

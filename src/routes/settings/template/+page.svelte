@@ -1,5 +1,4 @@
 <script>
-  import { page } from '$app/stores';
 	import { getContext } from 'svelte';
 
   import { openModal, closeModal } from 'svelte-modals';
@@ -88,77 +87,53 @@
 	<meta name="description" content="Template definitions" />
 </svelte:head>
 
-<section>
-  {#if $utils.isDesktop}
-    <h1>{$page.data.title}</h1>
-  {/if}
-
-  <div class="charges">
-    {#each $settings.template.charges as charge, i}
-      <div class="charge-wrapper">
-        <div
-          class="charge"
-          role="button"
-          tabindex="{i}"
-          on:click={handleClick}
-          on:keydown={handleClick}
-        >
-          <h2>{charge.name}</h2>
-          <p>{charge.value} {$settings.currency}</p>
-        </div>
-        <div
-          class="action edit"
-          class:visible={actionIndex === i}
-          role="button"
-          tabindex="{i}"
-          on:click={(e) => handleEditClick(e, charge.id)}
-          on:keydown={(e) => handleEditClick(e, charge.id)}
-        >
-          <svelte:component this={edit} />
-        </div>
-        <div
-          class="action delete"
-          class:visible={actionIndex === i}
-          role="button"
-          tabindex="{i}"
-          on:click={(e) => handleDeleteClick(e, charge.id)}
-          on:keydown={(e) => handleDeleteClick(e, charge.id)}
-        >
-          <svelte:component this={deleteForever} />
-        </div>
-      </div>
-    {/each}
-    <div class="charge-wrapper">
-      <div
-        class="charge add"
-        role="button"
-        tabindex="{$settings.template.charges.length}"
-        on:click={handleAddClick}
-        on:keydown={handleAddClick}
-      >
-        <svelte:component this={plusRounded} />
-      </div>
+{#each $settings.template.charges as charge, i}
+  <div class="charge-wrapper">
+    <div
+      class="charge"
+      role="button"
+      tabindex="{i}"
+      on:click={handleClick}
+      on:keydown={handleClick}
+    >
+      <h2>{charge.name}</h2>
+      <p>{charge.value} {$settings.currency}</p>
+    </div>
+    <div
+      class="action edit"
+      class:visible={actionIndex === i}
+      role="button"
+      tabindex="{i}"
+      on:click={(e) => handleEditClick(e, charge.id)}
+      on:keydown={(e) => handleEditClick(e, charge.id)}
+    >
+      <svelte:component this={edit} />
+    </div>
+    <div
+      class="action delete"
+      class:visible={actionIndex === i}
+      role="button"
+      tabindex="{i}"
+      on:click={(e) => handleDeleteClick(e, charge.id)}
+      on:keydown={(e) => handleDeleteClick(e, charge.id)}
+    >
+      <svelte:component this={deleteForever} />
     </div>
   </div>
-</section>
+{/each}
+<div class="charge-wrapper">
+  <div
+    class="charge add"
+    role="button"
+    tabindex="{$settings.template.charges.length}"
+    on:click={handleAddClick}
+    on:keydown={handleAddClick}
+  >
+    <svelte:component this={plusRounded} />
+  </div>
+</div>
 
 <style>
-  section {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 2rem;
-  }
-
-  h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin: 0;
-  }
-
   h2 {
     font-size: 1.2rem;
     font-weight: bold;
@@ -167,12 +142,6 @@
 
   p {
     margin: 0;
-  }
-
-  .charges {
-    flex-grow: 1;
-    width: 100%;
-    max-width: 100vw;
   }
 
   .charge-wrapper {
@@ -259,31 +228,6 @@
   }
 
   @media (min-width: 600px) {
-    section {
-      width: fit-content;
-      min-width: 400px;
-      margin: auto;
-      padding-top: 2rem;
-    }
-
-    .charges {
-      flex-grow: unset;
-      min-width: 400px;
-      max-width: 400px;
-      width: fit-content;
-      max-height: calc(100% - 2.5rem);
-      overflow-y: auto;
-      background: rgba(0, 0, 0, 0.05);
-      border: solid 1px rgba(0, 0, 0, 0.1);
-      border-radius: 1rem;
-      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    }
-
-    :global([data-dark-mode]) .charges {
-      background: rgba(0, 0, 0, 0.2);
-      border: solid 1px rgba(255, 255, 255, 0.05);
-    }
-
     .charge {
       background: rgba(0, 0, 0, 0);
       transition: background 500ms linear;
