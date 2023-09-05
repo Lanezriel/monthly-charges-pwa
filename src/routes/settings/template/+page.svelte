@@ -17,7 +17,6 @@
 
   // ----------
 
-  const utils = getContext('utils');
   const settings = getContext('settings');
 
   let actionId = null;
@@ -131,5 +130,6 @@
   p {
     flex-shrink: 0;
     margin: 0;
+    font-size: 1.2rem;
   }
 </style>

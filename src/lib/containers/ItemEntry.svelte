@@ -4,7 +4,7 @@
 </script>
 
 <button
-  class="charge"
+  class="item"
   class:centered={centered}
   on:click={clickCallback}
   on:keydown={clickCallback}
@@ -13,7 +13,7 @@
 </button>
 
 <style>
-  .charge {
+  .item {
     flex-grow: 1;
     min-width: 0;
     height: 4.5rem;
@@ -27,21 +27,42 @@
     color: unset;
   }
 
-  :global([data-dark-mode]) .charge {
+  :global([data-dark-mode]) .item {
     background: rgba(0, 0, 0, 0.2);
   }
 
-  .charge > * {
+  .item > * {
     pointer-events: none;
   }
 
-  .charge.centered {
+  .item.centered {
     justify-content: center;
   }
 
-  .charge.centered > :global(svg) {
+  .item.centered > :global(svg) {
     width: 3rem;
     height: 3rem;
     pointer-events: none;
+  }
+
+  @media (min-width: 600px) {
+    .item {
+      background: rgba(0, 0, 0, 0);
+      transition: background 500ms linear;
+      cursor: pointer;
+    }
+
+    .item:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    :global([data-dark-mode]) .item {
+      background: rgba(0, 0, 0, 0);
+      transition: background 500ms linear;
+    }
+
+    :global([data-dark-mode]) .item:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
   }
 </style>

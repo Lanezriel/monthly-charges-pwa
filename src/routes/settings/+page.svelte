@@ -1,5 +1,19 @@
 <script>
-  import { base } from '$app/paths';
+	import { getContext } from 'svelte';
+  import { goto } from '$app/navigation';
+
+  import createRipple from '$lib/utils/createRipple.js';
+
+	import ItemEntry from '$lib/containers/ItemEntry.svelte';
+	import ItemWrapper from '$lib/containers/ItemWrapper.svelte';
+
+  const settings = getContext('settings');
+
+  function navigate(event, path) {
+    createRipple(event);
+
+    goto(path);
+  }
 </script>
 
 <svelte:head>
@@ -7,28 +21,32 @@
 	<meta name="description" content="Settings" />
 </svelte:head>
 
-<div>
-  <p>To be done</p>
-  <a href="{base}/settings/template/">Template</a>
-</div>
+<ItemWrapper>
+  <ItemEntry clickCallback={(e) => navigate(e, './template')}>
+    <h2>Template configuration</h2>
+  </ItemEntry>
+</ItemWrapper>
+
+<ItemWrapper>
+  <ItemEntry clickCallback={(e) => createRipple(e)}>
+    <h2>Currency</h2>
+    <p>{$settings.currency}</p>
+  </ItemEntry>
+</ItemWrapper>
 
 <style>
-  div {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    padding: 2rem 1rem;
+  h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   p {
+    flex-shrink: 0;
     margin: 0;
-    padding: 0;
-  }
-
-  a {
-    font-weight: bold;
+    font-size: 1.2rem;
   }
 </style>
