@@ -18,6 +18,7 @@
 
 	import './styles.css';
 	import { fade } from 'svelte/transition';
+	import Footer from '$lib/navigation/Footer.svelte';
 
   // Retrieve data from +layout.js (which retrieved data from indexedDB)
   /** @type {import('./$types').PageData} */
@@ -104,14 +105,11 @@
           <slot />
         </div>
       </section>
-		  <!-- <slot /> -->
     </PageTransition>
 	</main>
 
   {#if $utils.isDesktop}
-    <footer>
-      <p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-    </footer>
+    <Footer />
   {:else}
     <BottomNav />
   {/if}
@@ -129,39 +127,27 @@
 </Modals>
 
 <style>
-	.app {
-		display: flex;
-		flex-direction: column;
-		min-height: 100vh;
-	}
+  .app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 
-	main {
-		flex: 1;
-		display: grid;
+  main {
+    flex: 1;
+    display: grid;
     grid-template-rows: 1fr;
-		grid-template-columns: 1fr;
-		width: 100%;
-		max-width: 64rem;
-		margin: 0 auto;
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 64rem;
+    margin: 0 auto;
     overflow-x: hidden;
-	}
+  }
 
   main > :global(*) {
     grid-row: 1;
     grid-column: 1;
   }
-
-	footer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 12px;
-	}
-
-	footer a {
-		font-weight: bold;
-	}
 
   section {
     width: 100%;
@@ -221,10 +207,4 @@
       border: solid 1px rgba(255, 255, 255, 0.05);
     }
   }
-
-	@media (min-width: 480px) {
-		footer {
-			padding: 12px 0;
-		}
-	}
 </style>
