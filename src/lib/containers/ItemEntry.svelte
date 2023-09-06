@@ -1,4 +1,6 @@
 <script>
+  import createRipple from '$lib/utils/createRipple.js';
+
   export let centered = false;
   export let noPadding = false;
   export let clickCallback;
@@ -8,8 +10,8 @@
   class="item"
   class:centered={centered}
   class:no-padding={noPadding}
+  on:click={createRipple}
   on:click={clickCallback}
-  on:keydown={clickCallback}
 >
   <slot/>
 </button>

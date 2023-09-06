@@ -12,12 +12,15 @@
 
   const defaultItem = { name: '', value: 0.00 }
   let newItem = {...defaultItem};
+  let modal;
 
   $: if (item) {
       newItem = {...item};
     } else {
       newItem = {...defaultItem};
     };
+  
+  $: if (isOpen && modal) modal.querySelector('input#name').focus();
 
   $: nameValid = newItem.name !== undefined
     && newItem.name !== null
@@ -31,7 +34,7 @@
 </script>
 
 {#if isOpen}
-  <div role="dialog" class="modal" transition:fly|global={{ y: 50 }}>
+  <div role="dialog" class="modal" transition:fly|global={{ y: 50 }} bind:this={modal}>
     <div class="contents">
       <h2>{ title }</h2>
       <hr/>

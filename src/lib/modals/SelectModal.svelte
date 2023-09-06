@@ -1,5 +1,4 @@
 <script>
-  import { closeModal } from 'svelte-modals';
 	import { fly } from 'svelte/transition';
 
   // from svelte-modals
@@ -8,10 +7,14 @@
   // our props
   export let options = [{value: '', label: 'No options provided'}];
   export let onSelect;
+
+  let modal;
+
+  $: if (isOpen && modal) modal.querySelector('button').focus();
 </script>
 
 {#if isOpen}
-  <div role="dialog" class="modal" transition:fly|global={{ y: 50 }}>
+  <div role="dialog" class="modal" transition:fly|global={{ y: 50 }} bind:this={modal}>
     <div class="contents">
       {#each options as option (option.value)}
         <button on:click={() => onSelect(option.value)}>{option.label}</button>

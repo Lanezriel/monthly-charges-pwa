@@ -7,8 +7,6 @@
   import deleteForever from '$lib/svg/deleteForever.svelte';
   import plusRounded from '$lib/svg/plusRounded.svelte';
 
-  import createRipple from '$lib/utils/createRipple.js';
-
   import UpdateCharge from '$lib/modals/UpdateCharge.svelte';
   import DeleteConfirm from '$lib/modals/DeleteConfirm.svelte';
   import ItemWrapper from '$lib/containers/ItemWrapper.svelte';
@@ -23,9 +21,7 @@
 
   // ----------
 
-  function handleClick(event, id) {
-    createRipple(event);
-
+  function handleClick(id) {
     if (actionId === id) {
       actionId = null
     } else {
@@ -33,9 +29,7 @@
     }
   }
 
-  function handleEditClick(event, id) {
-    createRipple(event);
-
+  function handleEditClick(id) {
     openModal(UpdateCharge, {
       item: $settings.template.charges.find((item) => item.id === id),
       onValidate: (newItem) => {
@@ -46,12 +40,10 @@
 
         closeModal();
       },
-    });
+    }, { replace: true });
   }
 
-  function handleDeleteClick(event, id) {
-    createRipple(event);
-
+  function handleDeleteClick(id) {
     openModal(DeleteConfirm, {
       onDelete: () => {
         actionId = null;
@@ -60,11 +52,10 @@
 
         closeModal();
       },
-    });
+    }, { replace: true });
   }
 
-  function handleAddClick(event) {
-    createRipple(event);
+  function handleAddClick() {
     actionId = null;
 
     openModal(UpdateCharge, {
@@ -81,7 +72,7 @@
 
         closeModal();
       },
-    });
+    }, { replace: true });
   }
 </script>
 
@@ -92,7 +83,7 @@
 
 {#each $settings.template.charges as charge (charge.id)}
   <ItemWrapper>
-    <ItemEntry clickCallback={(e) => handleClick(e, charge.id)}>
+    <ItemEntry clickCallback={() => handleClick(charge.id)}>
       <h2>{charge.name}</h2>
       <p>{charge.value} {$settings.currency}</p>
     </ItemEntry>
@@ -100,13 +91,13 @@
     <ItemAction
       type="edit"
       isVisible={actionId === charge.id}
-      clickCallback={(e) => handleEditClick(e, charge.id)}
+      clickCallback={() => handleEditClick(charge.id)}
       icon={edit}
     />
     <ItemAction
       type="delete"
       isVisible={actionId === charge.id}
-      clickCallback={(e) => handleDeleteClick(e, charge.id)}
+      clickCallback={() => handleDeleteClick(charge.id)}
       icon={deleteForever}
     />
   </ItemWrapper>

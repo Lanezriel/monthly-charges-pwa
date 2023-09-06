@@ -1,4 +1,6 @@
 <script>
+  import createRipple from '$lib/utils/createRipple.js';
+
   export let type = 'edit';
   export let isVisible;
   export let clickCallback;
@@ -8,8 +10,8 @@
 <button
   class="action {type}"
   class:visible={isVisible}
+  on:click={createRipple}
   on:click={clickCallback}
-  on:keydown={clickCallback}
 >
   <svelte:component this={icon} />
 </button>

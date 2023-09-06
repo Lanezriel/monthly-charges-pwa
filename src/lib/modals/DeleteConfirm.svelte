@@ -7,10 +7,14 @@
 
   // our props
   export let onDelete;
+
+  let modal;
+
+  $: if(isOpen && modal) modal.querySelector('button.cancel').focus();
 </script>
 
 {#if isOpen}
-  <div role="dialog" class="modal" transition:fly|global={{ y: 50 }}>
+  <div role="dialog" class="modal" transition:fly|global={{ y: 50 }} bind:this={modal}>
     <div class="contents">
       <h2>Deletion warning!</h2>
       <hr/>
