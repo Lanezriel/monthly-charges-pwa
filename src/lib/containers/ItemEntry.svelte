@@ -1,11 +1,13 @@
 <script>
   export let centered = false;
+  export let noPadding = false;
   export let clickCallback;
 </script>
 
 <button
   class="item"
   class:centered={centered}
+  class:no-padding={noPadding}
   on:click={clickCallback}
   on:keydown={clickCallback}
 >
@@ -25,6 +27,10 @@
     background: rgba(0, 0, 0, 0.05);
     border: none;
     color: unset;
+  }
+
+  .item.no-padding {
+    padding: 0;
   }
 
   :global([data-dark-mode]) .item {
