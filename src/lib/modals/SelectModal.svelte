@@ -17,7 +17,14 @@
   <div role="dialog" class="modal" transition:fly|global={{ y: 50 }} bind:this={modal}>
     <div class="contents">
       {#each options as option (option.value)}
-        <button on:click={() => onSelect(option.value)}>{option.label}</button>
+        <button
+          title="{option.label}"
+          aria-label="auto"
+          aria-live="polite"
+          on:click={() => onSelect(option.value)}
+        >
+          {option.label}
+        </button>
       {/each}
     </div>
   </div>

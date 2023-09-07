@@ -71,8 +71,19 @@
       </form>
       <hr/>
       <div class="actions">
-        <button class="cancel" on:click={closeModal}>Cancel</button>
         <button
+          title="Cancel button"
+          aria-label="auto"
+          aria-live="polite"
+          class="cancel"
+          on:click={closeModal}
+        >
+          Cancel
+        </button>
+        <button
+          title="Validate button"
+          aria-label="auto"
+          aria-live="polite"
           class="validate"
           on:click={() => onValidate({...newItem, value: Number(newItem.value)})}
           disabled={!nameValid || !valueValid}

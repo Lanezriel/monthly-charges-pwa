@@ -21,8 +21,24 @@
       <p>Are you sure you want to delete this item?</p>
       <hr/>
       <div class="actions">
-        <button class="cancel" on:click={closeModal}>Cancel</button>
-        <button class="delete" on:click={onDelete}>Delete</button>
+        <button
+          class="cancel"
+          title="Cancel button"
+          aria-label="auto"
+          aria-live="polite"
+          on:click={closeModal}
+        >
+          Cancel
+        </button>
+        <button
+          class="delete"
+          title="Delete button"
+          aria-label="auto"
+          aria-live="polite"
+          on:click={onDelete}
+        >
+          Delete
+        </button>
       </div>
     </div>
   </div>

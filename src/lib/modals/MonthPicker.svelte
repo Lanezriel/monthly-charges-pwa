@@ -40,17 +40,35 @@
       <h2>Select charges month</h2>
       <hr/>
       <div class="year">
-        <button on:click={createRipple} on:click={() => year -= 1}>
+        <button
+          title="Previous year"
+          aria-label="auto"
+          aria-live="polite"
+          on:click={createRipple}
+          on:click={() => year -= 1}
+        >
           <svelte:component this={ChevronLeftRounded}/>
         </button>
         <p>{year}</p>
-        <button on:click={createRipple} on:click={() => year += 1}>
+        <button
+          title="Next year"
+          aria-label="auto"
+          aria-live="polite"
+          on:click={createRipple}
+          on:click={() => year += 1}
+        >
           <svelte:component this={ChevronRightRounded}/>
         </button>
       </div>
       <div class="months">
         {#each months as month (month.value)}
-          <button on:click={() => onSelect(new Date(year, month.value))} on:click={closeModal}>
+          <button
+            title="{month.name}"
+            aria-label="auto"
+            aria-live="polite"
+            on:click={() => onSelect(new Date(year, month.value))}
+            on:click={closeModal}
+          >
             {month.name}
           </button>
         {/each}

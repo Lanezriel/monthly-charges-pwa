@@ -15,7 +15,7 @@
 
 <header>
 	<div class="corner">
-		<a href="https://github.com/Lanezriel" target="_blank">
+		<a href="https://github.com/Lanezriel" target="_blank" aria-label="My Github page">
 			<svelte:component this={github} />
 		</a>
 	</div>
@@ -26,7 +26,7 @@
 		</svg>
 		<ul>
       {#if $page.data.type === 'sub'}
-        <a href="{$page.data.backURL}" class="back-icon">
+        <a href="{$page.data.backURL}" class="back-icon" aria-label="Back">
           <svelte:component this={arrowBackRounded} />
         </a>
       {/if}
@@ -38,11 +38,23 @@
 			</li>
       {#if $page.data.editable}
         {#if $edition}
-          <button class="edition-icon" on:click={() => $edition = false}>
+          <button
+            title="Disable edition mode"
+            aria-label="auto"
+            aria-live="polite"
+            class="edition-icon"
+            on:click={() => $edition = false}
+          >
             <svelte:component this={roundCheck} />
           </button>
         {:else}
-          <button class="edition-icon" on:click={() => $edition = true}>
+          <button
+            title="Enable edition mode"
+            aria-label="auto"
+            aria-live="polite"
+            class="edition-icon"
+            on:click={() => $edition = true}
+          >
             <svelte:component this={edit} />
           </button>
         {/if}

@@ -13,11 +13,11 @@
 <header>
   <div class="corner">
     {#if $page.data.type === 'main'}
-      <a href="https://github.com/Lanezriel" target="_blank">
+      <a href="https://github.com/Lanezriel" target="_blank" aria-label="My Github page">
         <svelte:component this={github} />
       </a>
     {:else}
-      <a href="{$page.data.backURL}">
+      <a href="{$page.data.backURL}" aria-label="Back">
         <svelte:component this={arrowBackRounded} />
       </a>
     {/if}
@@ -28,11 +28,23 @@
 
     {#if $page.data.editable && !$page.data.title.startsWith('404')}
       {#if $edition}
-        <button class="edition-icon" on:click={() => $edition = false}>
+        <button
+          title="Disable edition mode"
+          aria-label="auto"
+          aria-live="polite"
+          class="edition-icon"
+          on:click={() => $edition = false}
+        >
           <svelte:component this={roundCheck} />
         </button>
       {:else}
-        <button class="edition-icon" on:click={() => $edition = true}>
+        <button
+          title="Enable edition mode"
+          aria-label="auto"
+          aria-live="polite"
+          class="edition-icon"
+          on:click={() => $edition = true}
+        >
           <svelte:component this={edit} />
         </button>
       {/if}

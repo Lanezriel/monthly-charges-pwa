@@ -10,6 +10,9 @@
 <button
   class="action {type}"
   class:visible={isVisible}
+  title="{type} button"
+  aria-label="auto"
+  aria-live="polite"
   on:click={createRipple}
   on:click={clickCallback}
 >
