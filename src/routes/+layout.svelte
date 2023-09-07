@@ -1,38 +1,36 @@
 <script>
-  import { setContext } from 'svelte';
-  import { writable } from 'svelte/store';
+  import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
   import { dev } from '$app/environment';
   import { page } from '$app/stores';
 
   import { set } from 'idb-keyval';
   import { pwaInfo } from 'virtual:pwa-info';
-
   import { Modals, closeModal } from 'svelte-modals';
 
 	import Header from '$lib/navigation/Header.svelte';
   import TopBar from '$lib/navigation/TopBar.svelte';
 	import PageTransition from '$lib/containers/PageTransition.svelte';
+	import Footer from '$lib/navigation/Footer.svelte';
   import BottomNav from '$lib/navigation/BottomNav.svelte';
 
-  import defaultTemplate from '$lib/utils/defaultTemplate.js';
+  import { utils, settings, entries } from '$lib/stores';
 
 	import './styles.css';
-	import { fade } from 'svelte/transition';
-	import Footer from '$lib/navigation/Footer.svelte';
 
   // Retrieve data from +layout.js (which retrieved data from indexedDB)
   /** @type {import('./$types').PageData} */
   export let data;
 
-  // Initiate stores
-  const test = writable(data.test || { isSmall: false, isTeal: false });
-  setContext('test', test);
+  // Initiate stores data
+  onMount(() => {
+    $utils.isDesktop = window.innerWidth >= 600;
 
-  const utils = writable({ isDesktop: window.innerWidth >= 600 });
-  setContext('utils', utils);
+    if (data.settings) $settings = data.settings;
+    $settings.isDark = checkPrefersColorScheme();
 
-  const settings = writable(data.settings || { isDark: checkPrefersColorScheme(), currency: '€', template: defaultTemplate });
-  setContext('settings', settings);
+    if (data.entries) $entries = data.entries;
+  });
   
   // Update on system preference change
   if (window.matchMedia) {
@@ -46,9 +44,9 @@
   }
 
   // Update indexedDb when store has changes
-  $: $test, updateIDB('test', $test);
   $: $settings, updateIDB('settings', $settings);
   $: $settings.isDark, toggleHTMLDarkMode($settings.isDark);
+  $: $entries, updateIDB('entries', $entries);
   
   // Other reactives
   $: pathname = data.pathname;
@@ -163,6 +161,7 @@
     font-size: 2.5rem;
     font-weight: bold;
     margin: 0;
+    text-transform: capitalize;
   }
 
   .wrapper {

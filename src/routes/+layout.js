@@ -7,8 +7,8 @@ export const trailingSlash = 'always';
 export async function load({ url }) {
   const { pathname } = url;
 
-  const test = await get('test');
   const settings = await get('settings');
+  const entries = await get('entries');
 
-  return { pathname, test, settings };
+  return { pathname, settings, entries };
 } 

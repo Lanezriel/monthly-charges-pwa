@@ -1,18 +1,14 @@
 <script>
-	import { getContext } from 'svelte';
   import { goto } from '$app/navigation';
 
   import { openModal, closeModal } from 'svelte-modals';
 
+  import { settings } from '$lib/stores';
   import createRipple from '$lib/utils/createRipple.js';
 
   import SelectModal from '$lib/modals/SelectModal.svelte';
 	import ItemEntry from '$lib/containers/ItemEntry.svelte';
 	import ItemWrapper from '$lib/containers/ItemWrapper.svelte';
-
-  const settings = getContext('settings');
-
-  let currencySelect;
 
   function navigate(event, path) {
     createRipple(event);

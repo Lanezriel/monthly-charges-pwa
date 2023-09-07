@@ -17,6 +17,9 @@
     --color-theme-2: #4075a6;
     --color-text: rgba(0, 0, 0, 0.7);
 
+    --progress-bar: hsl(200, 35%, 35%);
+    --progress-bar-bg: #7ab0e2;
+
     --column-width: 42rem;
     --column-margin-top: 4rem;
 
@@ -44,6 +47,9 @@
     --color-theme-1: #ff3e00;
     --color-theme-2: #7ab0e2;
     --color-text: rgba(255, 255, 255, 0.8);
+
+    --progress-bar: #7ab0e2;
+    --progress-bar-bg: hsl(200, 35%, 35%);
 
     --nav-background: hsl(240, 15%, 6%);
 

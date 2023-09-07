@@ -1,8 +1,12 @@
 <script>
   import { page } from '$app/stores';
 
+  import { edition } from '$lib/stores';
+
 	import github from '$lib/svg/github.svelte';
   import arrowBackRounded from '$lib/svg/arrowBackRounded.svelte';
+  import roundCheck from '$lib/svg/roundCheck.svelte';
+  import edit from '$lib/svg/edit.svelte';
   import DarkModeToggler from '$lib/DarkModeToggler.svelte';
 </script>
 
@@ -19,7 +23,21 @@
     {/if}
 	</div>
 
-	<h1>{$page.data.title}</h1>
+  <div class="title-wrapper">
+    <h1>{$page.data.title}</h1>
+
+    {#if $page.data.editable && !$page.data.title.startsWith('404')}
+      {#if $edition}
+        <button class="edition-icon" on:click={() => $edition = false}>
+          <svelte:component this={roundCheck} />
+        </button>
+      {:else}
+        <button class="edition-icon" on:click={() => $edition = true}>
+          <svelte:component this={edit} />
+        </button>
+      {/if}
+    {/if}
+  </div>
 
 	<div class="corner">
 		<DarkModeToggler />
@@ -41,8 +59,20 @@
 	}
 
   h1 {
+    max-width: 100%;
     font-size: 1.5rem;
     font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .title-wrapper {
+    position: relative;
+    max-width: calc(100vw - 12.5rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
 	.corner {
@@ -66,5 +96,19 @@
 
   .corner a:hover :global(svg) {
     color: var(--icon-fill-hover);
+  }
+
+  .edition-icon {
+    position: absolute;
+    right: -2.5rem;
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .edition-icon > :global(svg) {
+    color: var(--color-text);
   }
 </style>

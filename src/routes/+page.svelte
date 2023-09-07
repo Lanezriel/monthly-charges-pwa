@@ -1,14 +1,78 @@
 <script>
-	import { getContext } from 'svelte';
+  import { goto } from '$app/navigation';
 
-  import createRipple from '$lib/utils/createRipple.js';
+  import { openModal, closeModal } from 'svelte-modals';
 
-  const test = getContext('test');
+  import { settings, entries, edition } from '$lib/stores';
 
-  $: buttonText = $test.isSmall ? 'Restore title size' : 'Make title small';
+  import MonthPicker from '$lib/modals/MonthPicker.svelte';
+  import DeleteConfirm from '$lib/modals/DeleteConfirm.svelte';
+	import ItemWrapper from '$lib/containers/ItemWrapper.svelte';
+  import ItemEntry from '$lib/containers/ItemEntry.svelte';
+  import ItemAction from '$lib/ItemAction.svelte';
 
-  function toggleIsSmall() {
-    $test.isSmall = !$test.isSmall;
+  import deleteForever from '$lib/svg/deleteForever.svelte';
+  import plusRounded from '$lib/svg/plusRounded.svelte';
+
+  let actionId;
+
+  $: if (!$edition) actionId = null;
+
+  function handleClick(id) {
+    if ($edition) {
+      if (actionId === id) {
+        actionId = null;
+      } else {
+        actionId = id;
+      }
+    } else {
+      goto(`./${id}`)
+    }
+  }
+
+  function handleDeleteClick(id) {
+    openModal(DeleteConfirm, {
+      onDelete: () => {
+        actionId = null;
+
+        $entries = $entries.filter((item) => item.id !== id);
+
+        closeModal();
+      },
+    }, { replace: true });
+  }
+
+  function handleAddClick() {
+   openModal(MonthPicker, {
+    onSelect: (date) => {
+      $entries = [
+        ...$entries,
+        {
+          id: crypto.randomUUID(),
+          name: date.toLocaleDateString(undefined, {month: 'long', year: 'numeric'}),
+          date,
+          charges: [
+            ...$settings.template.charges,
+          ],
+        },
+      ].toSorted((a, b) => a.date.getTime() - b.date.getTime());
+    },
+   }, { replace: true });
+  }
+
+  function getRemainingCharges(charges) {
+    return charges.reduce((acc, cur) => cur.paid ? acc : acc + cur.value, 0);
+  }
+
+  function getTotalCharges(charges) {
+    return charges.reduce((acc, cur) => acc + cur.value, 0);
+  }
+
+  function getProgress(charges) {
+    const total = getTotalCharges(charges);
+    const paid = charges.reduce((acc, cur) => cur.paid ? acc + cur.value : acc, 0);
+
+    return (paid / total) * 100;
   }
 </script>
 
@@ -17,52 +81,150 @@
 	<meta name="description" content="Home page" />
 </svelte:head>
 
-<section>
-	<h2 class:small-title={$test.isSmall}>Welcome!</h2>
-  <p>This page is soon to be completely changed</p>
-  <p>The following button exists only for testing the offline local storage</p>
-  <button on:click={createRipple} on:click={toggleIsSmall}>
-    {buttonText}
-  </button>
-</section>
+{#if $entries.length === 0}
+  <ItemWrapper>
+    <div class="oops">
+      <h2>Oops!</h2>
+      <p class="oops-detail">You don't seem to have any entry yet.</p>
+      <p class="oops-detail">Think about preparing your <a href="./settings/template?home=true">template</a> before starting.</p>
+    </div>
+  </ItemWrapper>
+{:else}
+  {#each $entries as entry (entry.id)}
+    <ItemWrapper>
+      <ItemEntry clickCallback={() => handleClick(entry.id)}>
+        <div class="wrapper">
+          <div class="info">
+            <h2>{entry.name}</h2>
+            <p>Remaining: {getRemainingCharges(entry.charges)} {$settings.currency}</p>
+          </div>
+          <div class="progress">
+            <div class="labels">
+              <p>0 {$settings.currency}</p>
+              <p>{getTotalCharges(entry.charges)} {$settings.currency}</p>
+            </div>
+            <div class="progress-bar">
+              <div style="width: {getProgress(entry.charges)}%;"></div>
+            </div>
+          </div>
+        </div>
+      </ItemEntry>
+
+      <ItemAction
+        type="delete"
+        isVisible={actionId === entry.id}
+        clickCallback={() => handleDeleteClick(entry.id)}
+        icon={deleteForever}
+      />
+    </ItemWrapper>
+  {/each}
+{/if}
+<ItemWrapper>
+  <ItemEntry clickCallback={handleAddClick} centered>
+    <svelte:component this={plusRounded} />
+  </ItemEntry>
+</ItemWrapper>
+
+
 
 <style>
-  section {
+  h2,
+  p:not(.oops-detail) {
+    margin: 0;
+    pointer-events: none;
+  }
+
+  p > a {
+    font-weight: bold;
+  }
+
+  .oops > p {
+    text-align: center;
+  }
+
+  .wrapper {
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem 1rem;
   }
 
-  h2 {
-    font-size: 4rem;
+  .info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .info > h2 {
+    text-transform: capitalize;
+    font-size: 1.2rem;
     font-weight: bold;
-    margin: 0;
   }
 
-  h2.small-title {
-    font-size: 2rem;
+  .progress {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
-  p {
-    text-align: center;
+  .progress > .labels {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
   }
 
-  button {
-    padding: 1rem 2.5rem;
+  .progress-bar {
+    position: relative;
+    width: 100%;
+    height: 4px;
     border-radius: 50px;
-    border: none;
-    font-size: 1.25rem;
-    background: var(--color-theme-1);
-    color: white;
-    box-shadow: 0 0.25rem 0.25rem #0004;
-    cursor: pointer;
-    transition: background 300ms ease-in-out;
+    background: var(--progress-bar-bg);
+    overflow: hidden;
   }
 
-  button:hover {
-    background: color-mix(in srgb, var(--color-theme-1), #000 15%);
+  .progress-bar > div {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background: var(--progress-bar);
+    border-radius: 50px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.25);
+  }
+
+  .oops {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  :global([data-dark-mode]) .oops {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .oops > h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+
+  @media (min-width: 600px) {
+    .oops {
+      background: none;
+    }
+
+    :global([data-dark-mode]) .oops {
+      background: none;
+    }
   }
 </style>

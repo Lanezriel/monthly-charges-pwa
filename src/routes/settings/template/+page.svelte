@@ -3,6 +3,8 @@
 
   import { openModal, closeModal } from 'svelte-modals';
 
+  import { settings } from '$lib/stores';
+
   import edit from '$lib/svg/edit.svelte';
   import deleteForever from '$lib/svg/deleteForever.svelte';
   import plusRounded from '$lib/svg/plusRounded.svelte';
@@ -14,8 +16,6 @@
 	import ItemAction from '$lib/ItemAction.svelte';
 
   // ----------
-
-  const settings = getContext('settings');
 
   let actionId = null;
 
@@ -68,7 +68,7 @@
             id: crypto.randomUUID(),
             paid: false,
           },
-        ];
+        ].toSorted((a, b) => b.value - a.value);
 
         closeModal();
       },

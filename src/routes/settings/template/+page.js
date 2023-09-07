@@ -1,9 +1,10 @@
 import { base } from "$app/paths";
 
-export function load() {
+export function load({ url }) {
+  const home = url.searchParams.get('home');
   return {
     title: 'Template',
     type: 'sub',
-    backURL: `${base}/settings/`,
+    backURL: home ? `${base}/` : `${base}/settings/`,
   };
 }

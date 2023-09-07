@@ -5,5 +5,6 @@ export function load() {
     title: 'Home',
     type: 'main',
     backURL: null,
+    editable: true,
   };
 };

@@ -2,8 +2,12 @@
 	import { page } from '$app/stores';
   import { base } from '$app/paths';
 
+  import { edition } from '$lib/stores';
+
 	import github from '$lib/svg/github.svelte';
   import arrowBackRounded from '$lib//svg/arrowBackRounded.svelte';
+  import edit from '$lib/svg/edit.svelte';
+  import roundCheck from '$lib/svg/roundCheck.svelte';
   import DarkModeToggler from '$lib/DarkModeToggler.svelte';
 
   $: basePath = base === '' ? '/' : `${base}/`;
@@ -32,6 +36,17 @@
       <li aria-current={$page.url.pathname === `${base}/settings/` ? 'page' : undefined}>
 				<a href="{base}/settings/">Settings</a>
 			</li>
+      {#if $page.data.editable}
+        {#if $edition}
+          <button class="edition-icon" on:click={() => $edition = false}>
+            <svelte:component this={roundCheck} />
+          </button>
+        {:else}
+          <button class="edition-icon" on:click={() => $edition = true}>
+            <svelte:component this={edit} />
+          </button>
+        {/if}
+      {/if}
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">
 			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
@@ -108,6 +123,16 @@
     left: -5rem;
   }
 
+  .edition-icon {
+    position: absolute;
+    right: -5rem;
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
 	li {
 		position: relative;
 		height: 100%;
@@ -125,7 +150,8 @@
 		border-top: var(--size) solid var(--color-theme-1);
 	}
 
-	nav a {
+	nav a,
+  nav .edition-icon {
 		display: flex;
 		height: 100%;
 		align-items: center;
@@ -139,7 +165,8 @@
 		transition: color 200ms linear;
 	}
 
-	a:hover {
+	a:hover,
+  .edition-icon:hover {
 		color: var(--color-theme-1);
 	}
 </style>

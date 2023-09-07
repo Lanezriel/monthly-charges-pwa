@@ -1,7 +1,6 @@
 <script>
   import { getContext } from 'svelte';
-
-  const settings = getContext('settings');
+  import { settings } from '$lib/stores';
 
   function toggleDarkMode() {
     $settings.isDark = !$settings.isDark;
