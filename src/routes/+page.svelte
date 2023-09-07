@@ -100,12 +100,12 @@
         <div class="wrapper">
           <div class="info">
             <h2>{entry.name}</h2>
-            <p>Remaining: {getRemainingCharges(entry.charges)} {$settings.currency}</p>
+            <p>Remaining: {getRemainingCharges(entry.charges).toFixed(2)} {$settings.currency}</p>
           </div>
           <div class="progress">
             <div class="labels">
               <p>0 {$settings.currency}</p>
-              <p>{getTotalCharges(entry.charges)} {$settings.currency}</p>
+              <p>{getTotalCharges(entry.charges).toFixed(2)} {$settings.currency}</p>
             </div>
             <div class="progress-bar">
               <div style="width: {getProgress(entry.charges)}%;"></div>
@@ -163,9 +163,16 @@
   }
 
   .info > h2 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     text-transform: capitalize;
     font-size: 1.2rem;
     font-weight: bold;
+  }
+
+  .info > p {
+    white-space: nowrap;
   }
 
   .progress {
