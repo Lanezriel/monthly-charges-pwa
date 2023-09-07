@@ -1,5 +1,5 @@
 <script>
-  import { goto } from '$app/navigation';
+  import { goto, beforeNavigate } from '$app/navigation';
 
   import { openModal, closeModal } from 'svelte-modals';
 
@@ -17,6 +17,10 @@
   let actionId;
 
   $: if (!$edition) actionId = null;
+
+  beforeNavigate(() => {
+    $edition = false;
+  });
 
   function handleClick(id) {
     if ($edition) {

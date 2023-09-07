@@ -1,5 +1,6 @@
 <script>
   import { openModal, closeModal } from 'svelte-modals';
+  import { beforeNavigate } from '$app/navigation';
   import { settings, entries, edition } from '$lib/stores';
 
   import UpdateCharge from '$lib/modals/UpdateCharge.svelte';
@@ -20,6 +21,10 @@
 
   $: if (!$edition) actionId = null;
   $: entry, onEntryChange();
+
+  beforeNavigate(() => {
+    $edition = false;
+  });
 
   function onEntryChange() {
     const index = $entries.findIndex((item) => item.id === entry.id);
