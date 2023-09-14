@@ -5,7 +5,6 @@
 
   import { settings, entries, edition } from '$lib/stores';
 
-  import PWAInfo from '$lib/modals/PWAInfo.svelte';
   import MonthPicker from '$lib/modals/MonthPicker.svelte';
   import DeleteConfirm from '$lib/modals/DeleteConfirm.svelte';
 	import ItemWrapper from '$lib/containers/ItemWrapper.svelte';
@@ -14,17 +13,10 @@
 
   import deleteForever from '$lib/svg/deleteForever.svelte';
   import plusRounded from '$lib/svg/plusRounded.svelte';
-	import { onMount } from 'svelte';
 
   let actionId;
 
   $: if (!$edition) actionId = null;
-
-  onMount(() => {
-    if (window.matchMedia && !window.matchMedia('display-mode: standalone').matches) {
-      openModal(PWAInfo, {}, { replace: true });
-    }
-  });
 
   beforeNavigate(() => {
     $edition = false;
